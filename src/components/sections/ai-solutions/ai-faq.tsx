@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
@@ -76,7 +76,7 @@ export function AIFAQ() {
                   className="w-full p-6 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
                 >
                   <h3 className="font-semibold text-white pr-4">{faq.question}</h3>
-                  <ChevronDownIcon
+                  <ChevronDown
                     className={`w-5 h-5 text-white/60 transition-transform ${
                       openIndex === index ? 'rotate-180' : ''
                     }`}

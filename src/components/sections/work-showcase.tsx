@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRightIcon, TrophyIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
+import { ArrowRight, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const caseStudies = [
@@ -42,7 +43,7 @@ const caseStudies = [
     challenge: 'High no-show rates and inefficient appointment scheduling',
     solution: 'Predictive analytics and automated reminder system',
     timeline: '4 weeks',
-    image: '/images/case-studies/summit-dental.jpg',
+    image: '/images/blog/dental-ai-success.jpg',
     metrics: {
       primary: {
         value: '-28%',
@@ -70,7 +71,7 @@ const caseStudies = [
     challenge: 'Manual estimate process and poor lead follow-up',
     solution: 'Automated estimate system with AI-powered follow-up',
     timeline: '5 weeks',
-    image: '/images/case-studies/precision-hvac.jpg',
+    image: '/images/blog/local-seo-success.jpg',
     metrics: {
       primary: {
         value: '+65%',
@@ -128,7 +129,7 @@ export function WorkShowcase() {
             .map((study) => (
               <div key={study.id} className="glass-card p-8 lg:p-12 ring-2 ring-electric-500/30">
                 <div className="flex items-center space-x-2 mb-6">
-                  <TrophyIcon className="w-5 h-5 text-sunset-400" />
+                  <Trophy className="w-5 h-5 text-sunset-400" />
                   <span className="text-sm font-medium text-sunset-400">Featured Success Story</span>
                 </div>
 
@@ -183,12 +184,16 @@ export function WorkShowcase() {
 
                     <Button href={`/work/${study.id}`} variant="primary">
                       Read Full Case Study
-                      <ArrowRightIcon className="ml-2 w-4 h-4" />
+                      <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
                   </div>
 
-                  {/* Metrics Grid */}
+                  {/* Right column image with gradient mask */}
                   <div>
+                    <div className="relative w-full h-64 lg:h-full mb-6">
+                      <Image src={study.image} alt={study.client} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover rounded-xl" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/10 to-transparent rounded-xl" />
+                    </div>
                     <div className="grid grid-cols-1 gap-6">
                       {study.metrics.secondary.map((metric, index) => (
                         <motion.div
@@ -212,20 +217,7 @@ export function WorkShowcase() {
                       ))}
                     </div>
 
-                    {/* Technologies */}
-                    <div className="mt-6">
-                      <h4 className="text-sm font-semibold text-white/80 mb-3">Technologies Used</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {study.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-3 py-1 text-xs bg-white/10 text-white/70 rounded-full"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </div>
@@ -314,65 +306,14 @@ export function WorkShowcase() {
                     className="text-sm text-electric-400 hover:text-electric-300 font-medium flex items-center group-hover:translate-x-1 transition-transform"
                   >
                     Read More
-                    <ArrowRightIcon className="ml-1 w-3 h-3" />
+                    <ArrowRight className="ml-1 w-3 h-3" />
                   </a>
                 </div>
               </motion.div>
             ))}
         </motion.div>
 
-        {/* Stats Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="glass-card p-8 mb-12"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-display font-black gradient-text mb-2">50+</div>
-              <div className="text-white/80 font-medium">Projects Completed</div>
-            </div>
-            <div>
-              <div className="text-3xl font-display font-black gradient-text mb-2">340%</div>
-              <div className="text-white/80 font-medium">Average ROI</div>
-            </div>
-            <div>
-              <div className="text-3xl font-display font-black gradient-text mb-2">28 Days</div>
-              <div className="text-white/80 font-medium">Average Launch</div>
-            </div>
-            <div>
-              <div className="text-3xl font-display font-black gradient-text mb-2">98%</div>
-              <div className="text-white/80 font-medium">Client Satisfaction</div>
-            </div>
-          </div>
-        </motion.div>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <h3 className="text-2xl font-display font-bold text-white mb-4">
-            Ready to be our next success story?
-          </h3>
-          <p className="text-white/70 mb-8 max-w-2xl mx-auto">
-            Join the growing list of local businesses that have transformed their operations
-            and increased revenue with our AI-powered solutions.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button href="/contact" variant="primary" size="lg">
-              Start Your Project
-            </Button>
-            <Button href="/work" variant="secondary" size="lg">
-              View All Case Studies
-            </Button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

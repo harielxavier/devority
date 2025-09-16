@@ -106,7 +106,7 @@ export function AIPricing() {
               <ul className="space-y-3 mb-8">
                 {tier.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-start">
-                    <CheckIcon className="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                    <CheckIcon className="w-5 h-5 text-electric-400 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-white/80 text-sm">{feature}</span>
                   </li>
                 ))}

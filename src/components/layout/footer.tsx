@@ -21,6 +21,7 @@ const navigation = {
     { name: 'Work', href: '/work' },
     { name: 'Process', href: '/process' },
     { name: 'Blog', href: '/blog' },
+    { name: 'RSS', href: '/rss.xml' },
     { name: 'Contact', href: '/contact' },
   ],
   legal: [
@@ -32,7 +33,7 @@ const navigation = {
 
 export function Footer() {
   return (
-    <footer className="relative bg-ink border-t border-white/10">
+    <footer className="relative bg-midnight border-t border-white/10">
       <div className="max-w-container container-padding mx-auto">
         <div className="py-16 lg:py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">

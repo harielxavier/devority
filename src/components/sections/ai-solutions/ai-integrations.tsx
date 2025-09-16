@@ -160,7 +160,7 @@ export function AIIntegrations() {
                       </div>
                     </div>
                     <p className="text-sm text-white/70">{tool.description}</p>
-                    <div className="mt-3 flex items-center text-xs text-green-400">
+                    <div className="mt-3 flex items-center text-xs text-electric-400">
                       <CheckIcon className="w-3 h-3 mr-1" />
                       Supported
                     </div>

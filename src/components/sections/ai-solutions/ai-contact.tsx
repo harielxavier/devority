@@ -2,37 +2,38 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { 
-  ChatBubbleLeftRightIcon,
-  CalendarIcon,
-  PhoneIcon,
-  EnvelopeIcon
-} from '@heroicons/react/24/outline';
+import {
+  MessageCircle,
+  Calendar,
+  Phone,
+  Mail,
+  Lightbulb
+} from 'lucide-react';
 
 const contactMethods = [
   {
-    icon: ChatBubbleLeftRightIcon,
+    icon: MessageCircle,
     title: 'Live Chat',
     description: 'Get instant answers to your AI questions',
     action: 'Start Chat',
     available: 'Available now'
   },
   {
-    icon: CalendarIcon,
+    icon: Calendar,
     title: 'Schedule Consultation',
     description: 'Book a free 30-minute AI strategy session',
     action: 'Book Call',
     available: 'Next available: Today'
   },
   {
-    icon: PhoneIcon,
+    icon: Phone,
     title: 'Call Us',
     description: 'Speak directly with an AI specialist',
     action: '(973) 555-0123',
     available: 'Mon-Fri 9AM-6PM EST'
   },
   {
-    icon: EnvelopeIcon,
+    icon: Mail,
     title: 'Email Us',
     description: 'Send us your AI project details',
     action: 'ai@devority.io',
@@ -117,7 +118,7 @@ export function AIContact() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <Button href="/contact" size="xl" className="group">
               Book Free AI Consultation
-              <CalendarIcon className="ml-2 w-5 h-5 transition-transform group-hover:scale-110" />
+              <Calendar className="ml-2 w-5 h-5 transition-transform group-hover:scale-110" />
             </Button>
             <Button href="/work" variant="secondary" size="xl">
               See AI Success Stories
@@ -125,7 +126,10 @@ export function AIContact() {
           </div>
 
           <div className="text-sm text-white/60">
-            <p>💡 <strong className="text-white">No commitment required.</strong> Just honest advice about how AI can help your business.</p>
+            <p className="flex items-center">
+              <Lightbulb className="w-4 h-4 text-electric-400 mr-2" />
+              <strong className="text-white">No commitment required.</strong> Just honest advice about how AI can help your business.
+            </p>
           </div>
         </motion.div>
       </div>

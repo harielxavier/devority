@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* Fonts are now loaded via Next.js font optimization in layout.tsx */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,17 +9,17 @@
   }
   
   body {
-    @apply bg-ink text-white antialiased;
+    @apply bg-midnight text-white antialiased;
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 
-  /* Custom scrollbar */
+  /* Custom scrollbar with NEW brand colors */
   ::-webkit-scrollbar {
     width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-ink-900;
+    @apply bg-midnight-900;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -30,9 +30,27 @@
     @apply bg-electric-500;
   }
 
-  /* Focus styles */
+  /* Enhanced focus styles with better contrast */
   :focus-visible {
-    @apply outline-none ring-2 ring-electric-500 ring-offset-2 ring-offset-ink;
+    @apply outline-none ring-2 ring-electric-400 ring-offset-2 ring-offset-midnight;
+  }
+
+  /* Improved focus ring utility */
+  .focus-ring {
+    @apply ring-2 ring-electric-400 ring-offset-2 ring-offset-midnight;
+  }
+
+  /* Better contrast text utilities */
+  .text-white-high-contrast {
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .text-white-medium-contrast {
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .text-white-low-contrast {
+    color: rgba(255, 255, 255, 0.70);
   }
 
   /* Selection styles */
@@ -42,34 +60,98 @@
 }
 
 @layer components {
-  /* Glass card effect */
+  /* Enhanced glass card system with depth */
   .glass-card {
     @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
-    background-image: 
-      radial-gradient(at 40% 20%, rgba(10, 104, 154, 0.3) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, rgba(221, 85, 28, 0.2) 0px, transparent 50%),
-      radial-gradient(at 0% 50%, rgba(159, 72, 132, 0.2) 0px, transparent 50%);
+    background-image:
+      radial-gradient(at 40% 20%, rgba(0, 229, 255, 0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(255, 107, 53, 0.12) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(255, 0, 128, 0.08) 0px, transparent 50%),
+      radial-gradient(at 60% 80%, rgba(0, 102, 255, 0.1) 0px, transparent 50%);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  /* Gradient text */
+  .glass-card-enhanced {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+    background-image:
+      radial-gradient(at 40% 20%, rgba(0, 229, 255, 0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(255, 107, 53, 0.12) 0px, transparent 50%);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card-enhanced:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      0 0 0 1px rgba(0, 229, 255, 0.2);
+  }
+
+  /* Gradient text with NEW brand colors */
   .gradient-text {
-    @apply bg-gradient-to-r from-electric-400 to-sunset-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-electric-400 via-magenta-400 to-sunset-400 bg-clip-text text-transparent;
   }
 
-  /* Button styles */
+  .gradient-text-cool {
+    @apply bg-gradient-to-r from-electric-400 to-royal-400 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-warm {
+    @apply bg-gradient-to-r from-sunset-400 to-magenta-400 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-energy {
+    @apply bg-gradient-to-r from-magenta-400 via-royal-400 to-electric-400 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-brand {
+    @apply bg-gradient-to-r from-electric-500 to-magenta-500 bg-clip-text text-transparent;
+  }
+
+  /* Button styles with NEW brand colors */
   .btn-primary {
-    @apply bg-gradient-to-r from-electric-600 to-sunset-600 hover:from-electric-500 hover:to-sunset-500 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-electric-500/25;
+    @apply bg-gradient-to-r from-electric-500 to-electric-600 hover:from-electric-400 hover:to-electric-500 text-midnight font-medium px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-electric-500/25;
   }
 
   .btn-secondary {
-    @apply glass-card hover:bg-white/10 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105;
+    @apply glass-card hover:bg-white/10 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 border border-electric-500/30 hover:border-electric-400/50;
+  }
+
+  .btn-energy {
+    @apply bg-gradient-to-r from-magenta-500 to-magenta-600 hover:from-magenta-400 hover:to-magenta-500 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-magenta-500/25;
+  }
+
+  .btn-sunset {
+    @apply bg-gradient-to-r from-sunset-500 to-sunset-600 hover:from-sunset-400 hover:to-sunset-500 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-sunset-500/25;
+  }
+
+  .btn-royal {
+    @apply bg-gradient-to-r from-royal-500 to-royal-600 hover:from-royal-400 hover:to-royal-500 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-royal-500/25;
   }
 
   .btn-ghost {
     @apply text-electric-400 hover:text-electric-300 font-medium px-6 py-3 rounded-full transition-all duration-300 hover:bg-electric-500/10;
   }
 
-  /* Section spacing */
+  /* Enhanced Section spacing system */
+  .section-spacing-sm {
+    @apply py-12 lg:py-16;
+  }
+
+  .section-spacing-md {
+    @apply py-16 lg:py-24;
+  }
+
+  .section-spacing-lg {
+    @apply py-24 lg:py-32;
+  }
+
   .section-padding {
     @apply py-16 lg:py-24;
   }
@@ -108,6 +190,79 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     pointer-events: none;
   }
+
+  /* Feature hover effects */
+  .feature-card {
+    @apply relative overflow-hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(10, 104, 154, 0.1), transparent);
+    transition: left 0.5s ease-in-out;
+  }
+
+  .feature-card:hover::before {
+    left: 100%;
+  }
+
+  .feature-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  /* Testimonials scrolling animation */
+  .testimonials-mask {
+    mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+  }
+
+  /* Testimonial card hover effects */
+  .testimonial-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(10, 104, 154, 0.1), 0 10px 10px -5px rgba(10, 104, 154, 0.04);
+  }
+
+  /* Tilted scroll 3D effects */
+  .rotate-x-12 {
+    transform: rotateX(20deg);
+  }
+
+  .-rotate-z-12 {
+    transform: rotateZ(-20deg);
+  }
+
+  .skew-x-12 {
+    transform: skewX(20deg);
+  }
+
+  /* Enhanced 3D perspective for tilted scroll */
+  .tilted-scroll-container {
+    perspective: 1000px;
+    perspective-origin: center center;
+  }
+
+  .tilted-scroll-item {
+    transform-style: preserve-3d;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .tilted-scroll-item:hover {
+    transform: translateZ(20px) scale(1.02);
+  }
 }
 
 @layer utilities {
@@ -116,17 +271,29 @@
     text-wrap: balance;
   }
 
-  /* Responsive text sizes */
+  /* Enhanced responsive text hierarchy */
   .text-hero {
     @apply text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-extrabold leading-tight tracking-tight;
+  }
+
+  .text-hero-secondary {
+    @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-bold leading-tight tracking-tight;
   }
 
   .text-section-title {
     @apply text-2xl sm:text-3xl lg:text-4xl font-display font-bold leading-tight;
   }
 
+  .text-section-subtitle {
+    @apply text-xl sm:text-2xl lg:text-3xl font-display font-semibold leading-tight;
+  }
+
   .text-card-title {
     @apply text-lg sm:text-xl font-display font-semibold;
+  }
+
+  .text-card-subtitle {
+    @apply text-base sm:text-lg font-display font-medium;
   }
 
   /* Layout utilities */

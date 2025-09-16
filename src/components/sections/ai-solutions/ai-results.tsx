@@ -7,7 +7,7 @@ const results = [
     metric: '340%',
     label: 'Average ROI',
     description: 'Return on investment within 6 months',
-    color: 'text-green-400'
+    color: 'text-electric-400'
   },
   {
     metric: '8+ hrs',
@@ -25,7 +25,7 @@ const results = [
     metric: '24/7',
     label: 'Availability',
     description: 'AI never sleeps',
-    color: 'text-orchid-400'
+    color: 'text-magenta-400'
   }
 ];
 

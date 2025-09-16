@@ -2,12 +2,12 @@
 
 import { motion } from 'framer-motion';
 import {
-  MagnifyingGlassIcon,
-  PencilSquareIcon,
-  CodeBracketIcon,
-  RocketLaunchIcon,
-  ChartBarSquareIcon
-} from '@heroicons/react/24/outline';
+  Search,
+  PenTool,
+  Code,
+  Rocket,
+  BarChart3
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const processSteps = [
@@ -16,7 +16,7 @@ const processSteps = [
     title: 'Discover',
     subtitle: 'Understanding your business',
     duration: '1-2 weeks',
-    icon: MagnifyingGlassIcon,
+    icon: Search,
     description: 'We dive deep into your business goals, target audience, and competitive landscape to create a strategic foundation.',
     deliverables: [
       'Business analysis & competitor research',
@@ -35,7 +35,7 @@ const processSteps = [
     title: 'Design',
     subtitle: 'Creating your digital identity',
     duration: '1-2 weeks',
-    icon: PencilSquareIcon,
+    icon: PenTool,
     description: 'Our design team crafts a stunning, conversion-focused website that reflects your brand and engages your audience.',
     deliverables: [
       'Custom design mockups',
@@ -54,7 +54,7 @@ const processSteps = [
     title: 'Build',
     subtitle: 'Bringing designs to life',
     duration: '2-3 weeks',
-    icon: CodeBracketIcon,
+    icon: Code,
     description: 'We develop your website using cutting-edge technology, ensuring fast performance, security, and scalability.',
     deliverables: [
       'Fully functional website',
@@ -73,7 +73,7 @@ const processSteps = [
     title: 'Launch',
     subtitle: 'Going live with confidence',
     duration: '3-5 days',
-    icon: RocketLaunchIcon,
+    icon: Rocket,
     description: 'We handle the technical launch process and ensure everything works perfectly before handing over the keys.',
     deliverables: [
       'Domain & hosting setup',
@@ -92,7 +92,7 @@ const processSteps = [
     title: 'Grow',
     subtitle: 'Ongoing optimization & support',
     duration: 'Ongoing',
-    icon: ChartBarSquareIcon,
+    icon: BarChart3,
     description: 'We monitor performance, provide ongoing support, and continuously optimize to help your business grow.',
     deliverables: [
       'Monthly performance reports',

@@ -2,25 +2,27 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Menu, X } from 'lucide-react';
 import { Logo } from '@/components/ui/logo';
 import { Button } from '@/components/ui/button';
 
 const navigation = [
-  { name: 'Services', href: '/services' },
-  { name: 'Industries', href: '/industries' },
-  { name: 'Work', href: '/work' },
-  { name: 'Process', href: '/process' },
-  { name: 'About', href: '/about' },
-  { name: 'Blog', href: '/blog' },
+  { name: 'Services', href: '/#services' },
+  { name: 'Industries', href: '/#services' }, // Industries are covered in the services section
+  { name: 'Work', href: '/#work' },
+  { name: 'Process', href: '/#process' },
+  { name: 'About', href: '/#about' },
+  { name: 'Blog', href: '/#blog' },
 ];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const showAdminLink = searchParams?.get('admin') === '1';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +41,7 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-ink/80 backdrop-blur-xl border-b border-white/10'
+          ? 'bg-midnight/80 backdrop-blur-xl border-b border-white/10'
           : 'bg-transparent'
       }`}
     >
@@ -66,7 +68,7 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href="/pricing"
+              href="/#pricing"
               className="text-sm font-medium text-sunset-400 hover:text-sunset-300 transition-colors duration-200"
             >
               Pricing
@@ -75,6 +77,9 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex lg:items-center lg:space-x-4">
+            {showAdminLink && (
+              <Link href="/admin" className="text-xs text-white/60 hover:text-white">Admin</Link>
+            )}
             <Button href="/contact" variant="primary">
               Get a Quote
             </Button>
@@ -89,9 +94,9 @@ export function Header() {
               aria-label="Toggle menu"
             >
               {isOpen ? (
-                <XMarkIcon className="h-6 w-6" />
+                <X className="h-6 w-6" />
               ) : (
-                <Bars3Icon className="h-6 w-6" />
+                <Menu className="h-6 w-6" />
               )}
             </button>
           </div>
@@ -122,15 +127,24 @@ export function Header() {
                   </Link>
                 ))}
                 <Link
-                  href="/pricing"
+                  href="/#pricing"
                   className="block text-base font-medium text-sunset-400 hover:text-sunset-300 transition-colors duration-200"
                 >
                   Pricing
                 </Link>
-                <div className="pt-4 border-t border-white/10">
+                <div className="pt-4 border-t border-white/10 space-y-3">
                   <Button href="/contact" variant="primary" className="w-full">
-                    Get a Quote
+                    <div className="flex flex-col items-center">
+                      <span className="font-semibold">Get Free Strategy Call</span>
+                      <span className="text-xs opacity-75">($500 value)</span>
+                    </div>
                   </Button>
+                  <Button href="tel:+19738234567" variant="secondary" className="w-full">
+                    📞 Call Now: (973) 823-4567
+                  </Button>
+                  <div className="text-center text-xs text-white/60 pt-2">
+                    🕒 Same-day response guaranteed
+                  </div>
                 </div>
               </div>
             </motion.div>

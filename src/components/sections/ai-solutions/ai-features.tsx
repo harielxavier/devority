@@ -2,22 +2,22 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ChatBubbleLeftRightIcon,
-  DocumentTextIcon,
-  ChartBarIcon,
-  PhoneIcon,
-  EnvelopeIcon,
-  CalendarIcon,
-  CpuChipIcon,
-  LightBulbIcon
-} from '@heroicons/react/24/outline';
+import {
+  MessageCircle,
+  FileText,
+  BarChart3,
+  Phone,
+  Mail,
+  Calendar,
+  Cpu,
+  Lightbulb
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const aiFeatures = [
   {
     id: 'chatbots',
-    icon: ChatBubbleLeftRightIcon,
+    icon: MessageCircle,
     title: 'AI Chatbots & Virtual Assistants',
     subtitle: 'Intelligent customer interactions 24/7',
     description: 'Deploy smart chatbots that understand context, qualify leads, answer questions, and seamlessly hand off to your team when needed.',
@@ -56,7 +56,7 @@ const aiFeatures = [
   },
   {
     id: 'automation',
-    icon: DocumentTextIcon,
+    icon: FileText,
     title: 'Document & Process Automation',
     subtitle: 'Eliminate repetitive paperwork',
     description: 'Automate document generation, data entry, and workflow processes. From contracts to invoices, let AI handle the paperwork.',
@@ -95,7 +95,7 @@ const aiFeatures = [
   },
   {
     id: 'analytics',
-    icon: ChartBarIcon,
+    icon: BarChart3,
     title: 'Predictive Analytics & Insights',
     subtitle: 'Make data-driven decisions',
     description: 'Harness the power of machine learning to predict customer behavior, optimize operations, and identify growth opportunities.',
@@ -134,7 +134,7 @@ const aiFeatures = [
   },
   {
     id: 'communication',
-    icon: PhoneIcon,
+    icon: Phone,
     title: 'AI Communication & Follow-up',
     subtitle: 'Never miss a lead again',
     description: 'Automated email sequences, SMS follow-ups, and voice messages that nurture leads and keep customers engaged.',

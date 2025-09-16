@@ -4,20 +4,24 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric-500 focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric-500 focus-visible:ring-offset-2 focus-visible:ring-offset-midnight disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         primary:
-          'bg-gradient-to-r from-electric-600 to-sunset-600 hover:from-electric-500 hover:to-sunset-500 text-white shadow-lg hover:shadow-xl hover:shadow-electric-500/25 transform hover:scale-105',
+          'bg-gradient-to-r from-electric-500 to-electric-600 hover:from-electric-400 hover:to-electric-500 text-midnight shadow-lg hover:shadow-xl hover:shadow-electric-500/25 transform hover:scale-105',
         secondary:
-          'glass-card hover:bg-white/10 text-white border border-white/20 hover:border-white/30',
+          'glass-card hover:bg-white/10 text-white border border-electric-500/30 hover:border-electric-400/50',
         ghost:
           'text-electric-400 hover:text-electric-300 hover:bg-electric-500/10',
         outline:
-          'border border-electric-500 text-electric-400 hover:bg-electric-500 hover:text-white',
+          'border border-electric-500 text-electric-400 hover:bg-electric-500 hover:text-midnight',
         destructive:
-          'bg-ember-600 text-white hover:bg-ember-500 shadow-lg hover:shadow-xl hover:shadow-ember-500/25',
+          'bg-sunset-600 text-white hover:bg-sunset-500 shadow-lg hover:shadow-xl hover:shadow-sunset-500/25',
+        energy:
+          'bg-gradient-to-r from-magenta-500 to-magenta-600 hover:from-magenta-400 hover:to-magenta-500 text-white shadow-lg hover:shadow-xl hover:shadow-magenta-500/25 transform hover:scale-105',
+        royal:
+          'bg-gradient-to-r from-royal-500 to-royal-600 hover:from-royal-400 hover:to-royal-500 text-white shadow-lg hover:shadow-xl hover:shadow-royal-500/25 transform hover:scale-105',
       },
       size: {
         sm: 'h-9 px-4 text-xs',

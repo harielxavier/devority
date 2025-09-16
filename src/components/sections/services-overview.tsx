@@ -1,23 +1,23 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { 
-  GlobeAltIcon, 
-  CpuChipIcon, 
-  ShieldCheckIcon, 
-  MagnifyingGlassIcon 
-} from '@heroicons/react/24/outline';
+import {
+  Globe,
+  Cpu,
+  Shield,
+  Search
+} from 'lucide-react';
 
 const services = [
   {
-    icon: GlobeAltIcon,
+    icon: Globe,
     title: 'Websites & Web Apps',
     description: 'Modern, fast, accessible websites and custom web applications built for conversion.',
     features: ['Responsive Design', 'Performance Optimized', 'SEO Ready'],
     href: '/services/websites',
   },
   {
-    icon: CpuChipIcon,
+    icon: Cpu,
     title: 'AI Solutions',
     description: 'Chatbots, automation, and predictive analytics that save time and increase revenue.',
     features: ['AI Chatbots', 'Document Automation', 'Predictive Analytics'],
@@ -25,14 +25,14 @@ const services = [
     featured: true,
   },
   {
-    icon: ShieldCheckIcon,
+    icon: Shield,
     title: 'Monthly Care Plans',
     description: 'Ongoing maintenance, updates, and support to keep your site running perfectly.',
     features: ['24/7 Monitoring', 'Security Updates', 'Content Updates'],
     href: '/services/care-plans',
   },
   {
-    icon: MagnifyingGlassIcon,
+    icon: Search,
     title: 'SEO & Local SEO',
     description: 'Get found by local customers with technical SEO and local search optimization.',
     features: ['Local SEO', 'Technical SEO', 'Content Strategy'],
@@ -42,7 +42,7 @@ const services = [
 
 export function ServicesOverview() {
   return (
-    <section className="section-padding relative">
+    <section id="services" className="section-padding relative">
       <div className="max-w-container container-padding mx-auto">
         {/* Section Header */}
         <motion.div

@@ -72,7 +72,7 @@ export function AIIndustries() {
                 <div className="text-4xl">{industry.icon}</div>
                 <div>
                   <h3 className="text-xl font-display font-bold text-white">{industry.name}</h3>
-                  <div className="text-green-400 font-medium text-sm">{industry.results}</div>
+                  <div className="text-electric-400 font-medium text-sm">{industry.results}</div>
                 </div>
               </div>
               

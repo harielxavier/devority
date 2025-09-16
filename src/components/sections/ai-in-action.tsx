@@ -3,19 +3,19 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  ChatBubbleLeftRightIcon,
-  DocumentTextIcon,
-  ChartBarIcon,
-  PhoneIcon,
-  ClockIcon,
-  UserGroupIcon
-} from '@heroicons/react/24/outline';
+  MessageCircle,
+  FileText,
+  BarChart3,
+  Phone,
+  Clock,
+  Users
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const aiFeatures = [
   {
     id: 'chatbot',
-    icon: ChatBubbleLeftRightIcon,
+    icon: MessageCircle,
     title: 'AI Intake Assistant',
     subtitle: 'Qualify leads 24/7',
     description: 'Intelligent chatbot pre-qualifies potential clients, collects key information, and schedules consultations automatically.',
@@ -38,7 +38,7 @@ const aiFeatures = [
   },
   {
     id: 'automation',
-    icon: DocumentTextIcon,
+    icon: FileText,
     title: 'Document Automation',
     subtitle: 'Generate contracts instantly',
     description: 'AI-powered document generation creates contracts, intake forms, and follow-up emails based on client information.',
@@ -61,7 +61,7 @@ const aiFeatures = [
   },
   {
     id: 'analytics',
-    icon: ChartBarIcon,
+    icon: BarChart3,
     title: 'Predictive Analytics',
     subtitle: 'Prevent no-shows & churn',
     description: 'Machine learning identifies patterns to predict no-shows, optimize scheduling, and increase client retention.',

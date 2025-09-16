@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { StarIcon, MapPinIcon, BuildingOfficeIcon } from '@heroicons/react/24/solid';
-import { ShieldCheckIcon, AcademicCapIcon, TrophyIcon } from '@heroicons/react/24/outline';
+import { Star, MapPin, Building } from 'lucide-react';
+import { Shield, GraduationCap, Trophy, Award, Accessibility, Lock } from 'lucide-react';
 
 const testimonials = [
   {
@@ -72,22 +72,22 @@ const certifications = [
   {
     name: "Google Partner",
     description: "Certified in Google Ads & Analytics",
-    icon: "🏆"
+    icon: Trophy
   },
   {
     name: "Better Business Bureau",
     description: "A+ Rating",
-    icon: "⭐"
+    icon: Award
   },
   {
     name: "WCAG 2.2 AA",
     description: "Accessibility Certified",
-    icon: "♿"
+    icon: Accessibility
   },
   {
     name: "SOC 2 Compliant",
     description: "Security & Privacy Standards",
-    icon: "🔒"
+    icon: Lock
   }
 ];
 
@@ -133,7 +133,7 @@ export function TrustSignals() {
             <div className="flex items-center space-x-2">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} className="w-4 h-4 text-yellow-400" />
+                  <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                 ))}
               </div>
               <span className="text-white/80">4.9/5 Rating</span>
@@ -158,7 +158,7 @@ export function TrustSignals() {
             .map((testimonial) => (
               <div key={testimonial.id} className="glass-card p-8 lg:p-12 ring-2 ring-electric-500/30">
                 <div className="flex items-center space-x-2 mb-6">
-                  <TrophyIcon className="w-5 h-5 text-sunset-400" />
+                  <Trophy className="w-5 h-5 text-sunset-400" />
                   <span className="text-sm font-medium text-sunset-400">Featured Review</span>
                 </div>
 
@@ -167,7 +167,7 @@ export function TrustSignals() {
                   <div className="lg:col-span-2">
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <StarIcon key={i} className="w-5 h-5 text-yellow-400" />
+                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                       ))}
                     </div>
                     <blockquote className="text-lg text-white/90 italic mb-6 leading-relaxed">
@@ -181,7 +181,7 @@ export function TrustSignals() {
                         <div className="font-semibold text-white">{testimonial.author}</div>
                         <div className="text-sm text-white/70">{testimonial.title}</div>
                         <div className="flex items-center text-sm text-white/60">
-                          <MapPinIcon className="w-3 h-3 mr-1" />
+                          <MapPin className="w-3 h-3 mr-1" />
                           {testimonial.location}
                         </div>
                       </div>
@@ -227,7 +227,7 @@ export function TrustSignals() {
                 {/* Rating */}
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <StarIcon key={i} className="w-4 h-4 text-yellow-400" />
+                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                   ))}
                 </div>
 
@@ -250,7 +250,7 @@ export function TrustSignals() {
                 {/* Location & Results */}
                 <div className="flex items-center justify-between text-xs">
                   <div className="flex items-center text-white/60">
-                    <MapPinIcon className="w-3 h-3 mr-1" />
+                    <MapPin className="w-3 h-3 mr-1" />
                     {testimonial.location}
                   </div>
                   <div className="text-green-400 font-medium">
@@ -272,7 +272,7 @@ export function TrustSignals() {
           {/* Certifications */}
           <div>
             <h3 className="text-xl font-display font-semibold text-white mb-6 flex items-center">
-              <ShieldCheckIcon className="w-6 h-6 text-electric-400 mr-2" />
+              <Shield className="w-6 h-6 text-electric-400 mr-2" />
               Certifications & Standards
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -285,7 +285,9 @@ export function TrustSignals() {
                   viewport={{ once: true }}
                   className="glass-card p-4 text-center hover:bg-white/10 transition-all duration-300"
                 >
-                  <div className="text-2xl mb-2">{cert.icon}</div>
+                  <div className="text-electric-400 mb-2">
+                    <cert.icon className="w-6 h-6 mx-auto" />
+                  </div>
                   <div className="font-semibold text-white text-sm mb-1">{cert.name}</div>
                   <div className="text-xs text-white/60">{cert.description}</div>
                 </motion.div>
@@ -296,7 +298,7 @@ export function TrustSignals() {
           {/* Local Credentials */}
           <div>
             <h3 className="text-xl font-display font-semibold text-white mb-6 flex items-center">
-              <BuildingOfficeIcon className="w-6 h-6 text-sunset-400 mr-2" />
+              <Building className="w-6 h-6 text-sunset-400 mr-2" />
               Local Community Involvement
             </h3>
             <div className="space-y-4">

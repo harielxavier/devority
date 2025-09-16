@@ -1,31 +1,34 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { 
-  ChatBubbleLeftRightIcon,
-  DocumentTextIcon,
-  ChartBarIcon,
-  ClockIcon,
-  CurrencyDollarIcon,
-  UserGroupIcon
-} from '@heroicons/react/24/outline';
+import {
+  MessageCircle,
+  FileText,
+  BarChart3,
+  Clock,
+  DollarSign,
+  Users
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+// Alternative geometric hero import
+// import { AIServicesGeometricHero } from '@/components/sections/ai-solutions-geometric-hero';
 
 const benefits = [
   {
-    icon: ClockIcon,
+    icon: Clock,
     value: '8+ hours',
     label: 'Saved per week',
     description: 'Automate repetitive tasks'
   },
   {
-    icon: CurrencyDollarIcon,
+    icon: DollarSign,
     value: '+28%',
     label: 'Revenue increase',
     description: 'Better lead qualification'
   },
   {
-    icon: UserGroupIcon,
+    icon: Users,
     value: '24/7',
     label: 'Customer service',
     description: 'Never miss a lead'
@@ -34,17 +37,17 @@ const benefits = [
 
 const aiCapabilities = [
   {
-    icon: ChatBubbleLeftRightIcon,
+    icon: MessageCircle,
     title: 'AI Chatbots',
     description: 'Intelligent conversations that qualify leads and answer questions'
   },
   {
-    icon: DocumentTextIcon,
+    icon: FileText,
     title: 'Document Automation',
     description: 'Generate contracts, forms, and reports automatically'
   },
   {
-    icon: ChartBarIcon,
+    icon: BarChart3,
     title: 'Predictive Analytics',
     description: 'Forecast trends and prevent issues before they happen'
   }
@@ -55,7 +58,7 @@ export function AIHero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-electric-900/30 via-ink to-sunset-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-electric-900/30 via-midnight to-sunset-900/30" />
         
         {/* Animated AI Grid */}
         <div className="absolute inset-0 opacity-10">

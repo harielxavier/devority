@@ -31,6 +31,11 @@ export const metadata: Metadata = {
   },
   description:
     'We design, build, and manage your website—so you can focus on your business. Premium websites with AI solutions for attorneys, dentists, trades, and local businesses.',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   keywords: [
     'website design',
     'web development',
@@ -90,7 +95,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
+    // google: 'your-google-verification-code', // Add actual verification code when available
   },
 };
 
@@ -99,8 +104,46 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Devority",
+    "description": "Premium website design and AI solutions for local businesses",
+    "url": "https://devority.io",
+    "telephone": "+1-973-823-4567",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Sparta",
+      "addressRegion": "NJ",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "41.0348",
+      "longitude": "-74.6395"
+    },
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "priceRange": "$149-$749",
+    "areaServed": {
+      "@type": "Country",
+      "name": "United States"
+    },
+    "serviceType": ["Website Design", "AI Solutions", "SEO Services", "Web Development"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "50"
+    }
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} font-sans`}
       >
