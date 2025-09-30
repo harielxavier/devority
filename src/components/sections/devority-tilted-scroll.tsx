@@ -16,8 +16,8 @@ import {
 const devorityBenefits = [
   {
     id: 1,
-    name: "24/7 AI Assistant",
-    description: "Intelligent chatbots that never sleep, qualifying leads and answering questions around the clock so you never miss an opportunity.",
+    name: "AI Assistant",
+    description: "Intelligent chatbots that help qualify leads and answer questions so you never miss an opportunity.",
     icon: <Bot className="w-6 h-6" />,
   },
   {
@@ -58,8 +58,8 @@ const devorityBenefits = [
   },
   {
     id: 8,
-    name: "340% Average ROI",
-    description: "Our clients see exceptional returns on investment through increased efficiency, better lead conversion, and reduced operational costs.",
+    name: "Proven ROI",
+    description: "Our clients see strong returns on investment through increased efficiency, better lead conversion, and reduced operational costs.",
     icon: <Award className="w-6 h-6" />,
   },
 ];
@@ -148,20 +148,20 @@ export function DevorityTiltedScroll() {
           <div className="glass-card p-8 lg:p-12">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-3xl font-display font-black gradient-text mb-2">50+</div>
-                <div className="text-white/80 font-medium">Local Businesses</div>
+                <div className="text-3xl font-display font-black gradient-text mb-2">Local</div>
+                <div className="text-white/80 font-medium">Business Focus</div>
               </div>
               <div>
-                <div className="text-3xl font-display font-black gradient-text mb-2">340%</div>
-                <div className="text-white/80 font-medium">Average ROI</div>
+                <div className="text-3xl font-display font-black gradient-text mb-2">Proven</div>
+                <div className="text-white/80 font-medium">Results</div>
               </div>
               <div>
-                <div className="text-3xl font-display font-black gradient-text mb-2">&lt;30</div>
-                <div className="text-white/80 font-medium">Day Launch</div>
+                <div className="text-3xl font-display font-black gradient-text mb-2">Fast</div>
+                <div className="text-white/80 font-medium">Launch</div>
               </div>
               <div>
-                <div className="text-3xl font-display font-black gradient-text mb-2">24/7</div>
-                <div className="text-white/80 font-medium">AI Support</div>
+                <div className="text-3xl font-display font-black gradient-text mb-2">AI</div>
+                <div className="text-white/80 font-medium">Powered</div>
               </div>
             </div>
           </div>

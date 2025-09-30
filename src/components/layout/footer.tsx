@@ -23,6 +23,7 @@ const navigation = {
     { name: 'Blog', href: '/blog' },
     { name: 'RSS', href: '/rss.xml' },
     { name: 'Contact', href: '/contact' },
+    { name: 'Admin Sign In', href: '/admin/login' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy' },

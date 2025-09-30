@@ -48,7 +48,7 @@ const testimonials = [
     role: "Owner, Bella Vista Restaurant",
   },
   {
-    text: "Exceptional service and incredible results. Our website now ranks #1 for local searches and the AI chatbot qualifies leads 24/7. Couldn't be happier with our decision.",
+    text: "Exceptional service and incredible results. Our website now ranks well for local searches and the AI chatbot helps qualify leads. Couldn't be happier with our decision.",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face",
     name: "Jennifer Walsh",
     role: "Practice Manager, Walsh Orthodontics",
@@ -120,7 +120,7 @@ export function DevorityTestimonials() {
           </div>
 
           <p className="text-sm text-electric-300 font-medium">
-            100% client satisfaction • 340% average ROI • 50+ successful projects
+            100% client satisfaction • Proven results • Successful projects delivered
           </p>
         </motion.div>
 

@@ -9,21 +9,21 @@ const seoFeatures = [
     icon: Search,
     title: "Local SEO Domination",
     description: "Rank #1 in local search results and capture customers actively looking for your services in your area.",
-    stats: "340% average increase in local visibility",
+    stats: "Improve your local visibility",
     color: "from-electric-500 to-blue-500"
   },
   {
     icon: Bot,
     title: "AI-Powered Solutions", 
-    description: "Intelligent automation that handles customer inquiries, schedules appointments, and nurtures leads 24/7.",
-    stats: "85% reduction in response time",
+    description: "Intelligent automation that handles customer inquiries, schedules appointments, and nurtures leads efficiently.",
+    stats: "Faster customer response",
     color: "from-magenta-500 to-purple-500"
   },
   {
     icon: Clock,
     title: "Same-Day Response",
     description: "Lightning-fast implementation and support. Your website launches quickly and issues get resolved immediately.",
-    stats: "< 4 hour average response time",
+    stats: "Quick implementation and support",
     color: "from-sunset-500 to-orange-500"
   }
 ];

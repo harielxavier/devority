@@ -10,11 +10,8 @@ import { Button } from '@/components/ui/button';
 
 const navigation = [
   { name: 'Services', href: '/#services' },
-  { name: 'Industries', href: '/#services' }, // Industries are covered in the services section
-  { name: 'Work', href: '/#work' },
-  { name: 'Process', href: '/#process' },
-  { name: 'About', href: '/#about' },
   { name: 'Blog', href: '/#blog' },
+  { name: 'Pricing', href: '/#pricing' },
 ];
 
 export function Header() {
@@ -61,18 +58,14 @@ export function Header() {
                 className={`text-sm font-medium transition-colors duration-200 ${
                   pathname === item.href
                     ? 'text-electric-400'
+                    : item.name === 'Pricing'
+                    ? 'text-sunset-400 hover:text-sunset-300'
                     : 'text-white/80 hover:text-white'
                 }`}
               >
                 {item.name}
               </Link>
             ))}
-            <Link
-              href="/#pricing"
-              className="text-sm font-medium text-sunset-400 hover:text-sunset-300 transition-colors duration-200"
-            >
-              Pricing
-            </Link>
           </div>
 
           {/* CTA Button */}
@@ -80,7 +73,7 @@ export function Header() {
             {showAdminLink && (
               <Link href="/admin" className="text-xs text-white/60 hover:text-white">Admin</Link>
             )}
-            <Button href="/contact" variant="primary">
+            <Button href="/#contact" variant="primary">
               Get a Quote
             </Button>
           </div>
@@ -117,23 +110,20 @@ export function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
+                    onClick={() => setIsOpen(false)}
                     className={`block text-base font-medium transition-colors duration-200 ${
                       pathname === item.href
                         ? 'text-electric-400'
+                        : item.name === 'Pricing'
+                        ? 'text-sunset-400 hover:text-sunset-300'
                         : 'text-white/80 hover:text-white'
                     }`}
                   >
                     {item.name}
                   </Link>
                 ))}
-                <Link
-                  href="/#pricing"
-                  className="block text-base font-medium text-sunset-400 hover:text-sunset-300 transition-colors duration-200"
-                >
-                  Pricing
-                </Link>
                 <div className="pt-4 border-t border-white/10 space-y-3">
-                  <Button href="/contact" variant="primary" className="w-full">
+                  <Button href="/#contact" variant="primary" className="w-full">
                     <div className="flex flex-col items-center">
                       <span className="font-semibold">Get Free Strategy Call</span>
                       <span className="text-xs opacity-75">($500 value)</span>

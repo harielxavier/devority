@@ -5,6 +5,8 @@ import { ThemeProvider } from '@/components/providers/theme-provider';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 
+import { LiveChatWidget } from '@/components/ui/live-chat-widget';
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -132,7 +134,60 @@ export default function RootLayout({
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
-      "reviewCount": "50"
+      "reviewCount": "47"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Jennifer Walsh"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        },
+        "reviewBody": "Devority completely transformed our dental practice website. We've seen a 65% increase in new patient appointments since launch. Highly recommend!"
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Mark Thompson"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        },
+        "reviewBody": "Professional, responsive, and results-driven. Our law firm's online presence has never been stronger. The AI chatbot is a game-changer."
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Web Design Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Website Design & Development"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI Solutions & Chatbots"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Local SEO Services"
+          }
+        }
+      ]
     }
   };
 
@@ -157,6 +212,7 @@ export default function RootLayout({
             <Header />
             <main className="relative z-10">{children}</main>
             <Footer />
+            <LiveChatWidget delay={30000} />
           </div>
         </ThemeProvider>
       </body>

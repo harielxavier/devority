@@ -1,0 +1,320 @@
+2025-09-29T14:10:51: 2025-09-29T14:10:51: 2025-09-29T14:10:51: 2025-09-29T14:10:51: 2025-09-29T14:10:52: 2025-09-29T14:10:52: 2025-09-29T14:10:52: 2025-09-29T14:10:52: 2025-09-29T14:10:53: 2025-09-29T14:10:53: 2025-09-29T14:13:48:  ⨯ Failed to start server
+2025-09-29T14:13:48: Error: listen EADDRINUSE: address already in use :::3000
+2025-09-29T14:13:48:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:13:48:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:13:48:     at Server.listen (node:net:2102:7)
+2025-09-29T14:13:48:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:13:48:     at new Promise (<anonymous>)
+2025-09-29T14:13:48:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:13:48:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:13:48:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:13:48:   code: 'EADDRINUSE',
+2025-09-29T14:13:48:   errno: -48,
+2025-09-29T14:13:48:   syscall: 'listen',
+2025-09-29T14:13:48:   address: '::',
+2025-09-29T14:13:48:   port: 3000
+2025-09-29T14:13:48: }
+2025-09-29T14:13:49:  ⨯ Failed to start server
+2025-09-29T14:13:49: Error: listen EADDRINUSE: address already in use :::3000
+2025-09-29T14:13:49:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:13:49:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:13:49:     at Server.listen (node:net:2102:7)
+2025-09-29T14:13:49:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:13:49:     at new Promise (<anonymous>)
+2025-09-29T14:13:49:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:13:49:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:13:49:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:13:49:   code: 'EADDRINUSE',
+2025-09-29T14:13:49:   errno: -48,
+2025-09-29T14:13:49:   syscall: 'listen',
+2025-09-29T14:13:49:   address: '::',
+2025-09-29T14:13:49:   port: 3000
+2025-09-29T14:13:49: }
+2025-09-29T14:13:49:  ⨯ Failed to start server
+2025-09-29T14:13:49: Error: listen EADDRINUSE: address already in use :::3000
+2025-09-29T14:13:49:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:13:49:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:13:49:     at Server.listen (node:net:2102:7)
+2025-09-29T14:13:49:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:13:49:     at new Promise (<anonymous>)
+2025-09-29T14:13:49:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:13:49:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:13:49:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:13:49:   code: 'EADDRINUSE',
+2025-09-29T14:13:49:   errno: -48,
+2025-09-29T14:13:49:   syscall: 'listen',
+2025-09-29T14:13:49:   address: '::',
+2025-09-29T14:13:49:   port: 3000
+2025-09-29T14:13:49: }
+2025-09-29T14:13:50:  ⨯ Failed to start server
+2025-09-29T14:13:50: Error: listen EADDRINUSE: address already in use :::3000
+2025-09-29T14:13:50:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:13:50:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:13:50:     at Server.listen (node:net:2102:7)
+2025-09-29T14:13:50:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:13:50:     at new Promise (<anonymous>)
+2025-09-29T14:13:50:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:13:50:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:13:50:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:13:50:   code: 'EADDRINUSE',
+2025-09-29T14:13:50:   errno: -48,
+2025-09-29T14:13:50:   syscall: 'listen',
+2025-09-29T14:13:50:   address: '::',
+2025-09-29T14:13:50:   port: 3000
+2025-09-29T14:13:50: }
+2025-09-29T14:13:50:  ⨯ Failed to start server
+2025-09-29T14:13:50: Error: listen EADDRINUSE: address already in use :::3000
+2025-09-29T14:13:50:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:13:50:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:13:50:     at Server.listen (node:net:2102:7)
+2025-09-29T14:13:50:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:13:50:     at new Promise (<anonymous>)
+2025-09-29T14:13:50:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:13:50:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:13:50:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:13:50:   code: 'EADDRINUSE',
+2025-09-29T14:13:50:   errno: -48,
+2025-09-29T14:13:50:   syscall: 'listen',
+2025-09-29T14:13:50:   address: '::',
+2025-09-29T14:13:50:   port: 3000
+2025-09-29T14:13:50: }
+2025-09-29T14:13:51:  ⨯ Failed to start server
+2025-09-29T14:13:51: Error: listen EADDRINUSE: address already in use :::3000
+2025-09-29T14:13:51:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:13:51:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:13:51:     at Server.listen (node:net:2102:7)
+2025-09-29T14:13:51:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:13:51:     at new Promise (<anonymous>)
+2025-09-29T14:13:51:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:13:51:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:13:51:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:13:51:   code: 'EADDRINUSE',
+2025-09-29T14:13:51:   errno: -48,
+2025-09-29T14:13:51:   syscall: 'listen',
+2025-09-29T14:13:51:   address: '::',
+2025-09-29T14:13:51:   port: 3000
+2025-09-29T14:13:51: }
+2025-09-29T14:13:51:  ⨯ Failed to start server
+2025-09-29T14:13:51: Error: listen EADDRINUSE: address already in use :::3000
+2025-09-29T14:13:51:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:13:51:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:13:51:     at Server.listen (node:net:2102:7)
+2025-09-29T14:13:51:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:13:51:     at new Promise (<anonymous>)
+2025-09-29T14:13:51:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:13:51:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:13:51:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:13:51:   code: 'EADDRINUSE',
+2025-09-29T14:13:51:   errno: -48,
+2025-09-29T14:13:51:   syscall: 'listen',
+2025-09-29T14:13:51:   address: '::',
+2025-09-29T14:13:51:   port: 3000
+2025-09-29T14:13:51: }
+2025-09-29T14:13:52:  ⨯ Failed to start server
+2025-09-29T14:13:52: Error: listen EADDRINUSE: address already in use :::3000
+2025-09-29T14:13:52:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:13:52:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:13:52:     at Server.listen (node:net:2102:7)
+2025-09-29T14:13:52:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:13:52:     at new Promise (<anonymous>)
+2025-09-29T14:13:52:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:13:52:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:13:52:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:13:52:   code: 'EADDRINUSE',
+2025-09-29T14:13:52:   errno: -48,
+2025-09-29T14:13:52:   syscall: 'listen',
+2025-09-29T14:13:52:   address: '::',
+2025-09-29T14:13:52:   port: 3000
+2025-09-29T14:13:52: }
+2025-09-29T14:13:52:  ⨯ Failed to start server
+2025-09-29T14:13:52: Error: listen EADDRINUSE: address already in use :::3000
+2025-09-29T14:13:52:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:13:52:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:13:52:     at Server.listen (node:net:2102:7)
+2025-09-29T14:13:52:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:13:52:     at new Promise (<anonymous>)
+2025-09-29T14:13:52:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:13:52:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:13:52:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:13:52:   code: 'EADDRINUSE',
+2025-09-29T14:13:52:   errno: -48,
+2025-09-29T14:13:52:   syscall: 'listen',
+2025-09-29T14:13:52:   address: '::',
+2025-09-29T14:13:52:   port: 3000
+2025-09-29T14:13:52: }
+2025-09-29T14:13:52:  ⨯ Failed to start server
+2025-09-29T14:13:52: Error: listen EADDRINUSE: address already in use :::3000
+2025-09-29T14:13:52:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:13:52:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:13:52:     at Server.listen (node:net:2102:7)
+2025-09-29T14:13:52:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:13:52:     at new Promise (<anonymous>)
+2025-09-29T14:13:52:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:13:52:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:13:52:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:13:52:   code: 'EADDRINUSE',
+2025-09-29T14:13:52:   errno: -48,
+2025-09-29T14:13:52:   syscall: 'listen',
+2025-09-29T14:13:52:   address: '::',
+2025-09-29T14:13:52:   port: 3000
+2025-09-29T14:13:52: }
+2025-09-29T14:16:29:  ⨯ Failed to start server
+2025-09-29T14:16:29: Error: listen EADDRINUSE: address already in use :::3001
+2025-09-29T14:16:29:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:16:29:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:16:29:     at Server.listen (node:net:2102:7)
+2025-09-29T14:16:29:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:16:29:     at new Promise (<anonymous>)
+2025-09-29T14:16:29:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:16:29:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:16:29:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:16:29:   code: 'EADDRINUSE',
+2025-09-29T14:16:29:   errno: -48,
+2025-09-29T14:16:29:   syscall: 'listen',
+2025-09-29T14:16:29:   address: '::',
+2025-09-29T14:16:29:   port: 3001
+2025-09-29T14:16:29: }
+2025-09-29T14:16:29:  ⨯ Failed to start server
+2025-09-29T14:16:29: Error: listen EADDRINUSE: address already in use :::3001
+2025-09-29T14:16:29:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:16:29:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:16:29:     at Server.listen (node:net:2102:7)
+2025-09-29T14:16:29:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:16:29:     at new Promise (<anonymous>)
+2025-09-29T14:16:29:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:16:29:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:16:29:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:16:29:   code: 'EADDRINUSE',
+2025-09-29T14:16:29:   errno: -48,
+2025-09-29T14:16:29:   syscall: 'listen',
+2025-09-29T14:16:29:   address: '::',
+2025-09-29T14:16:29:   port: 3001
+2025-09-29T14:16:29: }
+2025-09-29T14:16:30:  ⨯ Failed to start server
+2025-09-29T14:16:30: Error: listen EADDRINUSE: address already in use :::3001
+2025-09-29T14:16:30:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:16:30:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:16:30:     at Server.listen (node:net:2102:7)
+2025-09-29T14:16:30:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:16:30:     at new Promise (<anonymous>)
+2025-09-29T14:16:30:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:16:30:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:16:30:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:16:30:   code: 'EADDRINUSE',
+2025-09-29T14:16:30:   errno: -48,
+2025-09-29T14:16:30:   syscall: 'listen',
+2025-09-29T14:16:30:   address: '::',
+2025-09-29T14:16:30:   port: 3001
+2025-09-29T14:16:30: }
+2025-09-29T14:16:30:  ⨯ Failed to start server
+2025-09-29T14:16:30: Error: listen EADDRINUSE: address already in use :::3001
+2025-09-29T14:16:30:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:16:30:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:16:30:     at Server.listen (node:net:2102:7)
+2025-09-29T14:16:30:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:16:30:     at new Promise (<anonymous>)
+2025-09-29T14:16:30:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:16:30:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:16:30:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:16:30:   code: 'EADDRINUSE',
+2025-09-29T14:16:30:   errno: -48,
+2025-09-29T14:16:30:   syscall: 'listen',
+2025-09-29T14:16:30:   address: '::',
+2025-09-29T14:16:30:   port: 3001
+2025-09-29T14:16:30: }
+2025-09-29T14:16:30:  ⨯ Failed to start server
+2025-09-29T14:16:30: Error: listen EADDRINUSE: address already in use :::3001
+2025-09-29T14:16:30:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:16:30:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:16:30:     at Server.listen (node:net:2102:7)
+2025-09-29T14:16:30:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:16:30:     at new Promise (<anonymous>)
+2025-09-29T14:16:30:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:16:30:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:16:30:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:16:30:   code: 'EADDRINUSE',
+2025-09-29T14:16:30:   errno: -48,
+2025-09-29T14:16:30:   syscall: 'listen',
+2025-09-29T14:16:30:   address: '::',
+2025-09-29T14:16:30:   port: 3001
+2025-09-29T14:16:30: }
+2025-09-29T14:16:30:  ⨯ Failed to start server
+2025-09-29T14:16:30: Error: listen EADDRINUSE: address already in use :::3001
+2025-09-29T14:16:30:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:16:30:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:16:30:     at Server.listen (node:net:2102:7)
+2025-09-29T14:16:30:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:16:30:     at new Promise (<anonymous>)
+2025-09-29T14:16:30:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:16:30:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:16:30:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:16:30:   code: 'EADDRINUSE',
+2025-09-29T14:16:30:   errno: -48,
+2025-09-29T14:16:30:   syscall: 'listen',
+2025-09-29T14:16:30:   address: '::',
+2025-09-29T14:16:30:   port: 3001
+2025-09-29T14:16:30: }
+2025-09-29T14:16:31:  ⨯ Failed to start server
+2025-09-29T14:16:31: Error: listen EADDRINUSE: address already in use :::3001
+2025-09-29T14:16:31:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:16:31:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:16:31:     at Server.listen (node:net:2102:7)
+2025-09-29T14:16:31:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:16:31:     at new Promise (<anonymous>)
+2025-09-29T14:16:31:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:16:31:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:16:31:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:16:31:   code: 'EADDRINUSE',
+2025-09-29T14:16:31:   errno: -48,
+2025-09-29T14:16:31:   syscall: 'listen',
+2025-09-29T14:16:31:   address: '::',
+2025-09-29T14:16:31:   port: 3001
+2025-09-29T14:16:31: }
+2025-09-29T14:16:31:  ⨯ Failed to start server
+2025-09-29T14:16:31: Error: listen EADDRINUSE: address already in use :::3001
+2025-09-29T14:16:31:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:16:31:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:16:31:     at Server.listen (node:net:2102:7)
+2025-09-29T14:16:31:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:16:31:     at new Promise (<anonymous>)
+2025-09-29T14:16:31:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:16:31:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:16:31:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:16:31:   code: 'EADDRINUSE',
+2025-09-29T14:16:31:   errno: -48,
+2025-09-29T14:16:31:   syscall: 'listen',
+2025-09-29T14:16:31:   address: '::',
+2025-09-29T14:16:31:   port: 3001
+2025-09-29T14:16:31: }
+2025-09-29T14:16:31:  ⨯ Failed to start server
+2025-09-29T14:16:31: Error: listen EADDRINUSE: address already in use :::3001
+2025-09-29T14:16:31:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:16:31:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:16:31:     at Server.listen (node:net:2102:7)
+2025-09-29T14:16:31:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:16:31:     at new Promise (<anonymous>)
+2025-09-29T14:16:31:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:16:31:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:16:31:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:16:31:   code: 'EADDRINUSE',
+2025-09-29T14:16:31:   errno: -48,
+2025-09-29T14:16:31:   syscall: 'listen',
+2025-09-29T14:16:31:   address: '::',
+2025-09-29T14:16:31:   port: 3001
+2025-09-29T14:16:31: }
+2025-09-29T14:16:32:  ⨯ Failed to start server
+2025-09-29T14:16:32: Error: listen EADDRINUSE: address already in use :::3001
+2025-09-29T14:16:32:     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+2025-09-29T14:16:32:     at listenInCluster (node:net:1997:12)
+2025-09-29T14:16:32:     at Server.listen (node:net:2102:7)
+2025-09-29T14:16:32:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:280:16
+2025-09-29T14:16:32:     at new Promise (<anonymous>)
+2025-09-29T14:16:32:     at startServer (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/server/lib/start-server.js:191:11)
+2025-09-29T14:16:32:     at Module.nextStart (/Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/cli/next-start.js:25:40)
+2025-09-29T14:16:32:     at /Users/mauriciofernandez/Documents/Devority/node_modules/next/dist/bin/next:105:856 {
+2025-09-29T14:16:32:   code: 'EADDRINUSE',
+2025-09-29T14:16:32:   errno: -48,
+2025-09-29T14:16:32:   syscall: 'listen',
+2025-09-29T14:16:32:   address: '::',
+2025-09-29T14:16:32:   port: 3001
+2025-09-29T14:16:32: }

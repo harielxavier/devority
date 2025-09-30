@@ -3,6 +3,7 @@ import { createSupabaseServerClient } from '@/lib/supabase/server'
 import { db } from '@/lib/db'
 import { BlogCreateForm } from '@/components/admin/blog-create-form'
 import { BlogTable } from '@/components/admin/blog-table'
+import { AdminLayoutWrapper } from '@/components/admin/admin-layout-wrapper'
 
 export default async function AdminBlogPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const supabase = createSupabaseServerClient()
@@ -32,7 +33,8 @@ export default async function AdminBlogPage({ searchParams }: { searchParams: { 
   const totalPages = Math.max(1, Math.ceil(total / take))
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-10 space-y-8">
+    <AdminLayoutWrapper>
+      <main className="max-w-5xl mx-auto px-6 py-10 space-y-8">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Manage Blog</h1>
       </div>
@@ -65,6 +67,7 @@ export default async function AdminBlogPage({ searchParams }: { searchParams: { 
           <a className={`px-3 py-1 rounded ${page >= totalPages ? 'pointer-events-none opacity-50 bg-white/5' : 'btn-secondary'}`} href={`?q=${encodeURIComponent(q)}&status=${status}&page=${page+1}`}>Next</a>
         </div>
       </div>
-    </main>
+      </main>
+    </AdminLayoutWrapper>
   )
 }

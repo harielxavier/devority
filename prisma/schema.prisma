@@ -19,8 +19,20 @@ model Contact {
   message   String
   source    String?  // Where they came from (contact form, pricing, etc.)
   status    ContactStatus @default(NEW)
+  industry  String?  // attorney, dentist, trades, restaurant, etc.
+  budget    Float?   // budget amount
+  timeline  String?  // project timeline
+  leadScore Int      @default(0) // calculated lead score
+  priority  Priority @default(MEDIUM)
+  assignedTo String? // user ID
+  notes     String?  // internal notes
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // Relations
+  projects  Project[]
+  revenues  Revenue[] @relation("ContactRevenue")
+  assignedUser User? @relation("AssignedUser", fields: [assignedTo], references: [id])
 
   @@map("contacts")
 }
@@ -39,6 +51,16 @@ model BlogPost {
   seoTitle    String?
   seoDescription String?
   featuredImage String?
+
+  // Enhanced fields
+  readTime    Int?     // estimated read time in minutes
+  views       Int      @default(0)
+  likes       Int      @default(0)
+  shares      Int      @default(0)
+
+  // Relations
+  contentCalendar ContentCalendar?
+
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -46,12 +68,21 @@ model BlogPost {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  role      UserRole @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String?
+  role        UserRole @default(USER)
+  lastLoginAt DateTime?
+  isActive    Boolean  @default(true)
+  avatar      String?
+  phone       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  assignedContacts Contact[] @relation("AssignedUser")
+  projects         Project[] @relation("ProjectManager")
+  assignedTasks    ProjectTask[] @relation("TaskAssignee")
 
   @@map("users")
 }
@@ -85,6 +116,199 @@ model RateLimit {
   @@map("rate_limits")
 }
 
+// 1. Client Project Management System
+model Project {
+  id          String        @id @default(cuid())
+  name        String
+  description String?
+  status      ProjectStatus @default(DISCOVERY)
+  priority    Priority      @default(MEDIUM)
+  startDate   DateTime?
+  endDate     DateTime?
+  budget      Decimal?
+  actualCost  Decimal?
+  progress    Int           @default(0) // percentage
+  websiteUrl  String?
+
+  // Relations
+  contactId   String
+  contact     Contact       @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  managerId   String?
+  manager     User?         @relation("ProjectManager", fields: [managerId], references: [id])
+
+  tasks       ProjectTask[]
+  revenues    Revenue[]
+  metrics     WebsiteMetrics[]
+  reports     ClientReport[]
+  aiUsage     AIUsage[] @relation("ProjectAIUsage")
+  seoRankings SEORanking[]
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("projects")
+}
+
+model ProjectTask {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  status      TaskStatus @default(TODO)
+  priority    Priority   @default(MEDIUM)
+  dueDate     DateTime?
+  completedAt DateTime?
+  estimatedHours Int?
+  actualHours    Int?
+
+  // Relations
+  projectId   String
+  project     Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  assigneeId  String?
+  assignee    User?      @relation("TaskAssignee", fields: [assigneeId], references: [id])
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@map("project_tasks")
+}
+
+// 4. Revenue & Financial Tracking
+model Revenue {
+  id          String   @id @default(cuid())
+  amount      Decimal
+  type        String   // setup_fee, monthly_fee, one_time, etc.
+  description String?
+  status      String   // pending, paid, overdue
+  dueDate     DateTime?
+  paidDate    DateTime?
+  invoiceUrl  String?
+
+  // Relations
+  projectId   String?
+  project     Project? @relation(fields: [projectId], references: [id])
+  contactId   String?
+  contact     Contact? @relation("ContactRevenue", fields: [contactId], references: [id])
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("revenues")
+}
+
+// 5. Website Performance Monitoring
+model WebsiteMetrics {
+  id            String   @id @default(cuid())
+  url           String
+  uptime        Float?   // percentage
+  responseTime  Int?     // milliseconds
+  pageSpeed     Int?     // Google PageSpeed score
+  seoScore      Int?     // SEO score
+  trafficCount  Int?     // monthly traffic
+  conversionRate Float?  // conversion percentage
+
+  // Relations
+  projectId     String?
+  project       Project? @relation(fields: [projectId], references: [id])
+
+  recordedAt    DateTime @default(now())
+
+  @@map("website_metrics")
+}
+
+// 6. AI Solutions Usage Analytics
+model AIUsage {
+  id              String   @id @default(cuid())
+  feature         String   // chatbot, document_gen, lead_scoring, etc.
+  usageCount      Int      @default(0)
+  successRate     Float?   // percentage
+  leadsGenerated  Int      @default(0)
+  conversions     Int      @default(0)
+
+  // Relations
+  projectId       String?
+  project         Project? @relation("ProjectAIUsage", fields: [projectId], references: [id])
+
+  recordedAt      DateTime @default(now())
+
+  @@map("ai_usage")
+}
+
+// 7. Local SEO Ranking Tracker
+model SEORanking {
+  id          String   @id @default(cuid())
+  keyword     String
+  position    Int?     // ranking position
+  url         String   // page URL
+  searchEngine String  @default("google") // google, bing, etc.
+  location    String?  // local search location
+
+  // Relations
+  projectId   String?
+  project     Project? @relation(fields: [projectId], references: [id])
+
+  recordedAt  DateTime @default(now())
+
+  @@map("seo_rankings")
+}
+
+// 8. Automated Client Reporting
+model ClientReport {
+  id          String   @id @default(cuid())
+  title       String
+  type        String   // monthly, quarterly, custom
+  content     Json     // report data
+  generatedAt DateTime @default(now())
+  sentAt      DateTime?
+
+  // Relations
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id])
+
+  @@map("client_reports")
+}
+
+// 9. Content Calendar & Blog Enhancement
+model ContentCalendar {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  contentType String   // blog_post, social_media, email, etc.
+  status      String   // planned, in_progress, completed, published
+  scheduledDate DateTime?
+  publishedDate DateTime?
+  assigneeId  String?
+
+  // Relations
+  blogPostId  String?  @unique
+  blogPost    BlogPost? @relation(fields: [blogPostId], references: [id])
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("content_calendar")
+}
+
+// 11. Competitor Analysis
+model Competitor {
+  id          String   @id @default(cuid())
+  name        String
+  website     String
+  industry    String
+  location    String?
+  description String?
+
+  // Metrics
+  estimatedTraffic Int?
+  domainAuthority  Int?
+  backlinks        Int?
+  keywords         String[] // tracked keywords
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("competitors")
+}
+
 enum ContactStatus {
   NEW
   CONTACTED
@@ -95,5 +319,33 @@ enum ContactStatus {
 
 enum UserRole {
   USER
+  EDITOR
   ADMIN
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum ProjectStatus {
+  DISCOVERY
+  PROPOSAL
+  DESIGN
+  DEVELOPMENT
+  REVIEW
+  LAUNCH
+  MAINTENANCE
+  COMPLETED
+  CANCELLED
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  REVIEW
+  COMPLETED
+  BLOCKED
 }

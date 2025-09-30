@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Check, Star, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+
 const pricingTiers = [
   {
     name: 'Essential',
@@ -31,21 +32,20 @@ const pricingTiers = [
     name: 'Growth + AI',
     price: 349,
     setupFee: 3000,
-    description: 'Everything you need to dominate your local market',
+    description: 'Everything you need to grow your business',
     features: [
       'Everything in Essential, plus:',
-      'AI chatbot that qualifies leads 24/7',
-      'Local SEO domination strategy',
+      'AI chatbot that qualifies leads',
+      'Local SEO optimization strategy',
       'Google My Business optimization',
       'Advanced analytics dashboard',
       '5 hours monthly updates',
       'Priority support (same-day response)',
       '1 custom AI automation workflow',
-      '340% average ROI guarantee'
     ],
     limitations: [],
-    ideal: 'Most popular choice • 85% of clients choose this plan',
-    cta: 'Start Dominating Your Market',
+    ideal: 'Most popular choice',
+    cta: 'Get Started',
     popular: true,
     savings: 'RECOMMENDED'
   }
@@ -71,9 +71,11 @@ export function PricingPreview() {
           <p className="text-lg text-white/80 max-w-3xl mx-auto mb-4">
             Choose the plan that fits your business. All plans include hosting, security, and support.
           </p>
-          <p className="text-sm text-electric-300 font-medium">
-            No hidden fees • Cancel anytime • 30-day money-back guarantee
+          <p className="text-sm text-electric-300 font-medium mb-6">
+            No hidden fees • Cancel anytime
           </p>
+
+
         </motion.div>
 
         {/* Pricing Cards */}

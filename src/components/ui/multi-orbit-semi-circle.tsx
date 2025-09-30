@@ -371,7 +371,7 @@ export default function MultiOrbitSemiCircle() {
           </div>
           <div className="group cursor-pointer">
             <div className="text-3xl font-bold bg-gradient-to-r from-sunset-400 to-electric-400 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
-              24/7
+              Fast
             </div>
             <div className="text-sm text-white/60 mt-1">Support</div>
           </div>

@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import useMeasure from "react-use-measure";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "lucide-react";
 
 const items = [
   {
@@ -76,7 +76,7 @@ const Card = ({ card }: { card: (typeof items)[0] }) => {
         </p>
         <div className="flex items-center text-electric-400 font-medium">
           <span>Learn more</span>
-          <IconArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
     </motion.div>

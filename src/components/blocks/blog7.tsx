@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -45,7 +46,7 @@ const Blog7 = ({
       author: "Devority Team",
       published: "15 Jan 2024",
       url: "/blog/law-firm-ai-chatbot-success",
-      image: "/images/blog/law-firm-success.jpg",
+      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=450&fit=crop&crop=center&auto=format&q=80",
     },
     {
       id: "post-2",
@@ -56,7 +57,7 @@ const Blog7 = ({
       author: "Devority Team",
       published: "8 Jan 2024",
       url: "/blog/local-seo-revenue-transformation",
-      image: "/images/blog/local-seo-success.jpg",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&crop=center&auto=format&q=80",
     },
     {
       id: "post-3",
@@ -67,7 +68,7 @@ const Blog7 = ({
       author: "Devority Team",
       published: "22 Dec 2023",
       url: "/blog/dental-ai-scheduling-success",
-      image: "/images/blog/dental-ai-success.jpg",
+      image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=450&fit=crop&crop=center&auto=format&q=80",
     },
   ],
 }: Blog7Props) => {
@@ -99,12 +100,13 @@ const Blog7 = ({
                   href={post.url}
                   className="block transition-opacity duration-200 hover:opacity-70 h-full w-full"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={post.image}
                     alt={post.title}
-                    className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-300 hover:scale-105"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-center transition-transform duration-300 hover:scale-105"
+                    priority={false}
                   />
                 </a>
               </div>

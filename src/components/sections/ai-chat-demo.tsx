@@ -131,7 +131,7 @@ export function AIChatDemo() {
             clearInterval(typingIntervalRef.current!);
             setIsTyping(false);
             setCurrentTypingText('');
-            setDisplayedMessages(prev => [...prev, message]);
+            setDisplayedMessages(prev => [...prev, message as Message]);
             setCurrentMessageIndex(prev => prev + 1);
           }
         }, typingSpeed);

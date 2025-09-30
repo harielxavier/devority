@@ -6,25 +6,47 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { TextRotate } from '@/components/ui/text-rotate';
 import { Spotlight } from '@/components/ui/spotlight';
+import { QuickContactForm } from '@/components/sections/quick-contact-form';
+
 
 export function EnhancedHero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Enhanced Background Effects */}
+      {/* Hero Background Image with Animation */}
       <div className="absolute inset-0">
-        {/* Subtle background collage using existing assets */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute -top-10 -left-10 w-[40vw] h-[40vh]">
-            <Image src="/images/blog/law-firm-success.jpg" alt="law firm" fill priority sizes="40vw" className="object-cover rounded-3xl" />
-          </div>
-          <div className="absolute bottom-10 left-1/3 w-[30vw] h-[30vh]">
-            <Image src="/images/blog/dental-ai-success.jpg" alt="dental" fill sizes="30vw" className="object-cover rounded-3xl" />
-          </div>
-          <div className="absolute -bottom-8 -right-8 w-[35vw] h-[35vh]">
-            <Image src="/images/blog/local-seo-success.jpg" alt="seo" fill sizes="35vw" className="object-cover rounded-3xl" />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-br from-midnight via-midnight/80 to-midnight" />
-        </div>
+        {/* Main Hero Background Image */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        >
+          <Image
+            src="/images/HeroPage.png"
+            alt="Abstract flowing design background"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+            className="object-cover object-center sm:object-center md:object-center lg:object-center"
+            quality={95}
+          />
+          {/* Minimal overlay to maximize background visibility */}
+          <div className="absolute inset-0 bg-gradient-to-br from-midnight/20 via-transparent to-midnight/20 sm:from-midnight/15 sm:via-transparent sm:to-midnight/15 lg:from-midnight/10 lg:via-transparent lg:to-midnight/10" />
+          {/* Very subtle bottom overlay only where text is */}
+          <div className="absolute inset-0 bg-gradient-to-t from-midnight/30 via-transparent to-transparent sm:from-midnight/25 lg:from-midnight/20" />
+          {/* Subtle animated overlay for depth */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-electric-900/10 via-transparent to-sunset-900/10"
+            animate={{
+              background: [
+                'linear-gradient(45deg, rgba(0, 229, 255, 0.1) 0%, transparent 50%, rgba(255, 107, 53, 0.1) 100%)',
+                'linear-gradient(45deg, rgba(255, 107, 53, 0.1) 0%, transparent 50%, rgba(0, 229, 255, 0.1) 100%)',
+                'linear-gradient(45deg, rgba(0, 229, 255, 0.1) 0%, transparent 50%, rgba(255, 107, 53, 0.1) 100%)'
+              ]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </motion.div>
         {/* Spotlight Effects - Optimized for responsiveness */}
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20 opacity-0"
@@ -72,24 +94,30 @@ export function EnhancedHero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-container container-padding mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-6xl mx-auto"
-        >
+      <div className="relative z-10 max-w-container container-padding mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-screen">
+          {/* Main Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-8 text-center lg:text-left"
+          >
 
-          {/* Enhanced Main Headline */}
+          {/* Enhanced Main Headline with improved readability */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-hero gradient-text text-balance mb-8 leading-tight"
+            className="text-hero text-balance mb-8 leading-tight"
+            style={{
+              textShadow: '0 8px 32px rgba(0, 0, 0, 1), 0 4px 16px rgba(0, 0, 0, 0.9), 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 4px rgba(0, 0, 0, 0.7)',
+              filter: 'drop-shadow(0 6px 12px rgba(0, 0, 0, 0.8))'
+            }}
           >
             <motion.span
-              className="inline-block"
-              animate={{ 
+              className="inline-block font-black"
+              animate={{
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
               transition={{ duration: 3, repeat: Infinity }}
@@ -98,32 +126,53 @@ export function EnhancedHero() {
                 backgroundSize: '200% 100%',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
+                textShadow: '0 4px 20px rgba(0, 229, 255, 0.5), 0 2px 8px rgba(255, 107, 53, 0.3)',
               }}
             >
               Dominate
             </motion.span>{' '}
             locally.{' '}
-            <span className="text-white">Scale with AI.</span>
+            <span className="text-white font-black">Scale with AI.</span>
           </motion.h1>
 
-          {/* Enhanced Subtitle */}
+          {/* Enhanced Subtitle with improved readability */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl lg:text-2xl text-white/90 text-balance mb-8 max-w-4xl mx-auto leading-relaxed"
+            className="text-xl lg:text-2xl text-white font-medium text-balance mb-8 max-w-4xl mx-auto leading-relaxed"
+            style={{
+              textShadow: '0 6px 24px rgba(0, 0, 0, 1), 0 3px 12px rgba(0, 0, 0, 0.9), 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 4px rgba(0, 0, 0, 0.7)',
+              filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8))'
+            }}
           >
-            Digital presence that works <em className="text-electric-300 not-italic font-semibold">while you sleep</em>. Focus on your business—we'll handle the rest.
+            Digital presence that works <em className="text-electric-300 not-italic font-bold" style={{ textShadow: '0 2px 8px rgba(0, 229, 255, 0.6)' }}>while you sleep</em>. Focus on your business—we&apos;ll handle the rest.
           </motion.p>
 
+          {/* Trust Elements with improved readability */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col items-center lg:items-start gap-4 mb-8"
+          >
+            <div className="text-center lg:text-left bg-black/70 backdrop-blur-lg px-4 py-2 rounded-lg border border-white/30 shadow-xl">
+              <p className="text-white font-bold text-sm"
+                 style={{
+                   textShadow: '0 4px 16px rgba(0, 0, 0, 1), 0 2px 8px rgba(0, 0, 0, 0.9)'
+                 }}>
+                Trusted by local businesses across New Jersey
+              </p>
+            </div>
+          </motion.div>
 
 
-          {/* Enhanced CTA Buttons */}
+          {/* Enhanced CTA Buttons - Hidden on large screens (form is in sidebar) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-16 lg:hidden"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -146,14 +195,17 @@ export function EnhancedHero() {
 
           </motion.div>
 
-          {/* Dynamic Business Type Rotator */}
+          {/* Dynamic Business Type Rotator with improved readability */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-wrap items-center justify-center gap-2 text-lg md:text-xl lg:text-2xl font-medium"
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-lg md:text-xl lg:text-2xl font-bold"
+            style={{
+              textShadow: '0 6px 24px rgba(0, 0, 0, 1), 0 3px 12px rgba(0, 0, 0, 0.9)'
+            }}
           >
-            <span className="text-white/90">We make websites for</span>
+            <span className="text-white bg-black/20 backdrop-blur-lg px-3 py-1 rounded-lg border border-white/30 shadow-xl">We make websites for</span>
             <TextRotate
               texts={[
                 "Attorneys",
@@ -163,7 +215,7 @@ export function EnhancedHero() {
                 "Nonprofits",
                 "Local Businesses"
               ]}
-              mainClassName="text-white px-3 py-1 bg-gradient-to-r from-electric-500 to-sunset-500 overflow-hidden rounded-lg font-semibold"
+              mainClassName="text-white px-4 py-2 bg-gradient-to-r from-electric-500 to-sunset-500 overflow-hidden rounded-lg font-bold shadow-lg border border-white/20"
               staggerFrom="last"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
@@ -174,69 +226,19 @@ export function EnhancedHero() {
               rotationInterval={2500}
             />
           </motion.div>
-        </motion.div>
+          </motion.div>
 
-        {/* Enhanced Floating Glass Card with More Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1, delay: 1, ease: "easeOut" }}
-          className="mt-20 max-w-5xl mx-auto"
-        >
-          <div className="glass-card p-8 lg:p-12 relative overflow-hidden border border-white/10">
-            {/* Enhanced Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0 bg-gradient-to-r from-electric-500 via-purple-500 to-sunset-500" />
-            </div>
-            
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="group"
-              >
-                <div className="text-3xl lg:text-4xl font-display font-bold gradient-text mb-2 group-hover:scale-110 transition-transform">
-                  &lt;21
-                </div>
-                <div className="text-white/80 text-sm font-medium">
-                  Day Launch Guarantee
-                </div>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="group"
-              >
-                <div className="text-3xl lg:text-4xl font-display font-bold gradient-text mb-2 group-hover:scale-110 transition-transform">
-                  340%
-                </div>
-                <div className="text-white/80 text-sm font-medium">
-                  Average ROI Increase
-                </div>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="group"
-              >
-                <div className="text-3xl lg:text-4xl font-display font-bold gradient-text mb-2 group-hover:scale-110 transition-transform">
-                  24/7
-                </div>
-                <div className="text-white/80 text-sm font-medium">
-                  AI-Powered Support
-                </div>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="group"
-              >
-                <div className="text-3xl lg:text-4xl font-display font-bold gradient-text mb-2 group-hover:scale-110 transition-transform">
-                  500+
-                </div>
-                <div className="text-white/80 text-sm font-medium">
-                  Successful Projects
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
+          {/* Contact Form Sidebar */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="lg:col-span-4"
+          >
+            <QuickContactForm />
+          </motion.div>
+        </div>
+
       </div>
 
       {/* Enhanced Scroll Indicator */}

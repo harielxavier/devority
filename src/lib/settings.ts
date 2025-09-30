@@ -8,7 +8,7 @@ export async function getBusinessEmail(): Promise<string> {
   } catch (e) {
     // If the table doesn't exist or DB not ready, fall back to env
   }
-  return env.BUSINESS_EMAIL || 'contact@send.updates'
+  return env.BUSINESS_EMAIL || 'hi@devority.io'
 }
 
 export async function setBusinessEmail(value: string): Promise<void> {

@@ -5,7 +5,10 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   
   // URLs
-  NEXT_PUBLIC_APP_URL: z.string().url().default('http://localhost:3000'),
+  NEXT_PUBLIC_APP_URL: z.string().url().default(
+    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  ),
+  NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
   
   // Email Configuration
   RESEND_API_KEY: z.string().min(1, 'Resend API key is required'),
@@ -18,6 +21,7 @@ const envSchema = z.object({
   // Authentication (Supabase)
   NEXT_PUBLIC_SUPABASE_URL: z.string().url('Invalid Supabase URL').optional(),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().optional(),
+  SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
   
   // Analytics
   NEXT_PUBLIC_GA_ID: z.string().optional(),

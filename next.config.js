@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Optimize for Netlify deployment
+  output: 'standalone',
+  swcMinify: true,
   experimental: {
     optimizePackageImports: ['@heroicons/react', 'lucide-react'],
   },
@@ -39,7 +42,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.resend.com https://*.supabase.co wss://*.supabase.co;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.resend.com https://ergczmkkjfquppwxenrx.supabase.co wss://ergczmkkjfquppwxenrx.supabase.co;",
           },
         ],
       },

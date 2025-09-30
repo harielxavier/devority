@@ -12,11 +12,26 @@ type Post = {
   published: boolean
   updatedAt: string | Date
   featuredImage?: string | null
+  category: string | null
+  tags: string[]
+  seoTitle: string | null
+  seoDescription: string | null
 }
+
+const normalizePost = (post: any): Post => ({
+  ...post,
+  excerpt: post.excerpt ?? null,
+  featuredImage: post.featuredImage ?? null,
+  category: post.category ?? 'General',
+  tags: Array.isArray(post.tags) ? post.tags : [],
+  seoTitle: post.seoTitle ?? null,
+  seoDescription: post.seoDescription ?? null,
+  updatedAt: String(post.updatedAt),
+})
 
 export function BlogTable({ initialPosts }: { initialPosts: Post[] }) {
   const [posts, setPosts] = useState<Post[]>(() =>
-    initialPosts.map((p) => ({ ...p, updatedAt: String(p.updatedAt) }))
+    initialPosts.map((p) => normalizePost(p))
   )
   const [editingId, setEditingId] = useState<string | null>(null)
   const editingPost = useMemo(
@@ -31,6 +46,10 @@ export function BlogTable({ initialPosts }: { initialPosts: Post[] }) {
     content: '',
     published: true,
     featuredImage: '',
+    category: 'General',
+    tags: '',
+    seoTitle: '',
+    seoDescription: '',
   })
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
@@ -44,6 +63,10 @@ export function BlogTable({ initialPosts }: { initialPosts: Post[] }) {
       content: post.content,
       published: post.published,
       featuredImage: post.featuredImage || '',
+      category: post.category || 'General',
+      tags: Array.isArray(post.tags) ? post.tags.join(', ') : '',
+      seoTitle: post.seoTitle || '',
+      seoDescription: post.seoDescription || '',
     })
     setMessage(null)
   }
@@ -58,14 +81,29 @@ export function BlogTable({ initialPosts }: { initialPosts: Post[] }) {
     setLoading(true)
     setMessage(null)
     try {
+      const payload = {
+        title: form.title,
+        slug: form.slug,
+        excerpt: form.excerpt,
+        content: form.content,
+        published: form.published,
+        featuredImage: form.featuredImage,
+        category: form.category || 'General',
+        tags: form.tags
+          .split(',')
+          .map((tag) => tag.trim())
+          .filter(Boolean),
+        seoTitle: form.seoTitle,
+        seoDescription: form.seoDescription,
+      }
       const res = await fetch(`/api/admin/blog/${editingId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data?.error || 'Failed to update post')
-      setPosts((prev) => prev.map((p) => (p.id === editingId ? { ...p, ...data.post } : p)))
+      setPosts((prev) => prev.map((p) => (p.id === editingId ? normalizePost(data.post) : p)))
       setMessage('Saved')
       setEditingId(null)
     } catch (e: any) {
@@ -120,14 +158,14 @@ export function BlogTable({ initialPosts }: { initialPosts: Post[] }) {
                     <a href={`/blog/preview/${p.id}`} className="btn-secondary px-3 py-1 rounded text-xs" target="_blank" rel="noreferrer">Preview</a>
                     <Button variant="secondary" size="sm" onClick={() => startEdit(p)}>
                       Edit
-                    </Button
+                    </Button>
                     <Button variant={p.published ? 'secondary' : 'primary'} size="sm" onClick={async () => {
                       setLoading(true)
                       try {
                         const res = await fetch(`/api/admin/blog/${p.id}/publish`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ published: !p.published }) })
                         const data = await res.json()
                         if (!res.ok) throw new Error(data?.error || 'Failed to toggle')
-                        setPosts(prev => prev.map(x => x.id === p.id ? { ...x, published: data.post.published } : x))
+                        setPosts(prev => prev.map(x => x.id === p.id ? normalizePost(data.post) : x))
                       } catch (e) {
                         alert((e as any).message || 'Failed')
                       } finally {
@@ -170,15 +208,41 @@ export function BlogTable({ initialPosts }: { initialPosts: Post[] }) {
               onChange={(e) => setForm((f) => ({ ...f, excerpt: e.target.value }))}
               placeholder="Excerpt"
             />
-            {/* @ts-expect-error Client component import */}
-            {require('./rich-text-editor').RichTextEditor({ value: form.content, onChange: (v: string) => setForm((f) => ({ ...f, content: v })) })}
+            <div className="grid gap-3 md:grid-cols-2">
+              <input
+                className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded"
+                value={form.category}
+                onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
+                placeholder="Category"
+              />
+              <input
+                className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded"
+                value={form.tags}
+                onChange={(e) => setForm((f) => ({ ...f, tags: e.target.value }))}
+                placeholder="Tags (comma separated)"
+              />
+            </div>
+            {require('../ui/rich-text-editor').RichTextEditor({ value: form.content, onChange: (v: string) => setForm((f) => ({ ...f, content: v })) })}
             <div className="mt-3">
-              {/* @ts-expect-error Client component import */}
               {require('./image-uploader').ImageUploader({ label: 'Change featured image', onUpload: (url: string) => setForm((f) => ({ ...f, featuredImage: url })) })}
               {form.featuredImage && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={form.featuredImage} alt="preview" className="mt-2 h-24 w-auto rounded border border-white/10" />
               )}
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              <input
+                className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded"
+                value={form.seoTitle}
+                onChange={(e) => setForm((f) => ({ ...f, seoTitle: e.target.value }))}
+                placeholder="SEO title"
+              />
+              <textarea
+                className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded resize-none min-h-[90px] md:col-span-2"
+                value={form.seoDescription}
+                onChange={(e) => setForm((f) => ({ ...f, seoDescription: e.target.value }))}
+                placeholder="SEO description"
+              />
             </div>
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={form.published} onChange={(e) => setForm((f) => ({ ...f, published: e.target.checked }))} />

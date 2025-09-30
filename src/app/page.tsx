@@ -1,7 +1,7 @@
 import { EnhancedHero } from '@/components/sections/enhanced-hero';
 import { SEOFeatures } from '@/components/sections/seo-features';
 import { WorkShowcase } from '@/components/sections/work-showcase';
-import MultiOrbitSemiCircle from '@/components/ui/multi-orbit-semi-circle';
+import { ContactSection } from '@/components/sections/contact-section';
 import { PricingPreview } from '@/components/sections/pricing-preview';
 import { CompactProcess } from '@/components/sections/compact-process';
 import { Blog7 } from '@/components/blocks/blog7';
@@ -14,7 +14,6 @@ export default function HomePage() {
       <section id="work">
         <WorkShowcase />
       </section>
-      <MultiOrbitSemiCircle />
       <section id="blog">
         <Blog7 />
       </section>
@@ -24,6 +23,7 @@ export default function HomePage() {
       <section id="process">
         <CompactProcess />
       </section>
+      <ContactSection />
     </>
   );
 }
