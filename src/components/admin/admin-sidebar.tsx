@@ -23,6 +23,7 @@ import { usePathname } from "next/navigation";
 
 export function AdminSidebar({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
   
   // Don't show sidebar on login page
   if (pathname === '/admin/login') {
@@ -94,8 +95,6 @@ export function AdminSidebar({ children }: { children: React.ReactNode }) {
       ),
     },
   ];
-
-  const [open, setOpen] = useState(false);
 
   return (
     <div className="flex h-screen bg-gray-100 dark:bg-neutral-900 w-full overflow-hidden">
