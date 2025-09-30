@@ -206,7 +206,8 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem={false}
+          enableSystem={true}
+          storageKey="devority-theme"
           disableTransitionOnChange
         >
           <div className="relative min-h-screen bg-gradient-dark noise-overlay">

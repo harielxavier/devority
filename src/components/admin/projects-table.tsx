@@ -13,9 +13,13 @@ import {
   Calendar,
   DollarSign,
   User,
-  Building
+  Building,
+  MoreHorizontal,
+  TrendingUp
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { ProjectForm } from './project-form'
+import { Pagination } from './pagination'
 
 interface Project {
   id: string
@@ -27,6 +31,7 @@ interface Project {
   endDate?: string | Date | null
   budget?: number | null
   progress: number
+  contactId: string
   contact: {
     id: string
     name: string
@@ -86,6 +91,8 @@ export function ProjectsTable({
   const searchParams = useSearchParams()
   const [searchValue, setSearchValue] = useState(currentSearch)
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+  const [editingProject, setEditingProject] = useState<Project | null>(null)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
 
   const statusColors = {
     DISCOVERY: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
@@ -147,6 +154,62 @@ export function ProjectsTable({
       }
     } catch (error) {
       alert('Failed to delete project')
+    }
+  }
+
+  const handleEdit = (project: Project) => {
+    setEditingProject(project)
+    setIsEditModalOpen(true)
+  }
+
+  const handleCloseEdit = () => {
+    setEditingProject(null)
+    setIsEditModalOpen(false)
+  }
+
+  const handleSuccess = () => {
+    router.refresh()
+  }
+
+  const handleStatusUpdate = async (projectId: string, newStatus: string) => {
+    try {
+      const response = await fetch(`/api/admin/projects/${projectId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: newStatus })
+      })
+
+      if (response.ok) {
+        router.refresh()
+      } else {
+        const error = await response.json()
+        alert(error.error || 'Failed to update project status')
+      }
+    } catch (error) {
+      alert('Failed to update project status')
+    }
+  }
+
+  const handleProgressUpdate = async (projectId: string, newProgress: number) => {
+    try {
+      const response = await fetch(`/api/admin/projects/${projectId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ progress: newProgress })
+      })
+
+      if (response.ok) {
+        router.refresh()
+      } else {
+        const error = await response.json()
+        alert(error.error || 'Failed to update project progress')
+      }
+    } catch (error) {
+      alert('Failed to update project progress')
     }
   }
 
@@ -266,14 +329,37 @@ export function ProjectsTable({
                   </div>
                 </td>
                 <td className="p-4">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusColors[project.status as keyof typeof statusColors]}`}>
-                    {project.status}
-                  </span>
+                  <select
+                    value={project.status}
+                    onChange={(e) => handleStatusUpdate(project.id, e.target.value)}
+                    className={`px-2.5 py-0.5 rounded-full text-xs font-medium border bg-transparent focus:outline-none focus:ring-2 focus:ring-electric-500/50 ${statusColors[project.status as keyof typeof statusColors]}`}
+                  >
+                    <option value="DISCOVERY" className="bg-gray-800">Discovery</option>
+                    <option value="PROPOSAL" className="bg-gray-800">Proposal</option>
+                    <option value="DESIGN" className="bg-gray-800">Design</option>
+                    <option value="DEVELOPMENT" className="bg-gray-800">Development</option>
+                    <option value="REVIEW" className="bg-gray-800">Review</option>
+                    <option value="LAUNCH" className="bg-gray-800">Launch</option>
+                    <option value="MAINTENANCE" className="bg-gray-800">Maintenance</option>
+                    <option value="COMPLETED" className="bg-gray-800">Completed</option>
+                    <option value="CANCELLED" className="bg-gray-800">Cancelled</option>
+                  </select>
                 </td>
                 <td className="p-4">
                   <div className="w-full">
                     <div className="flex items-center justify-between text-sm mb-1">
-                      <span className="text-white/80">{project.progress}%</span>
+                      <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        value={project.progress}
+                        onChange={(e) => {
+                          const value = Math.min(100, Math.max(0, parseInt(e.target.value) || 0))
+                          handleProgressUpdate(project.id, value)
+                        }}
+                        className="w-12 bg-transparent text-white/80 text-sm focus:outline-none focus:ring-1 focus:ring-electric-500/50 rounded px-1"
+                      />
+                      <span className="text-white/60 text-xs">%</span>
                       <span className="text-white/60">{project._count.tasks} tasks</span>
                     </div>
                     <div className="w-full bg-white/10 rounded-full h-2">
@@ -304,15 +390,25 @@ export function ProjectsTable({
                 <td className="p-4">
                   <div className="flex items-center gap-2">
                     <Link href={`/admin/projects/${project.id}`}>
-                      <Button variant="ghost" size="sm">
+                      <Button variant="ghost" size="sm" title="View Project">
                         <Eye className="h-4 w-4" />
                       </Button>
                     </Link>
                     <Button
                       variant="ghost"
                       size="sm"
+                      onClick={() => handleEdit(project)}
+                      className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10"
+                      title="Edit Project"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={() => handleDelete(project.id)}
                       className="text-red-400 hover:text-red-300 hover:bg-red-500/10"
+                      title="Delete Project"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
@@ -325,28 +421,46 @@ export function ProjectsTable({
       </div>
 
       {/* Pagination */}
-      {pagination.totalPages > 1 && (
-        <div className="p-4 border-t border-white/10 flex items-center justify-between">
-          <div className="text-sm text-white/60">
-            Showing {((pagination.page - 1) * pagination.limit) + 1} to {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} projects
-          </div>
-          <div className="flex items-center gap-2">
-            {pagination.hasPrev && (
-              <Link href={`/admin/projects?${new URLSearchParams({ ...Object.fromEntries(searchParams), page: (pagination.page - 1).toString() }).toString()}`}>
-                <Button variant="ghost" size="sm">Previous</Button>
-              </Link>
-            )}
-            <span className="px-3 py-1 bg-white/10 rounded text-sm text-white">
-              {pagination.page} of {pagination.totalPages}
-            </span>
-            {pagination.hasNext && (
-              <Link href={`/admin/projects?${new URLSearchParams({ ...Object.fromEntries(searchParams), page: (pagination.page + 1).toString() }).toString()}`}>
-                <Button variant="ghost" size="sm">Next</Button>
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
+      <Pagination
+        currentPage={pagination.page}
+        totalPages={pagination.totalPages}
+        totalItems={pagination.total}
+        itemsPerPage={pagination.limit}
+        startItem={((pagination.page - 1) * pagination.limit) + 1}
+        endItem={Math.min(pagination.page * pagination.limit, pagination.total)}
+        onPageChange={(page) => {
+          const params = new URLSearchParams(searchParams)
+          params.set('page', page.toString())
+          router.push(`/admin/projects?${params.toString()}`)
+        }}
+        onItemsPerPageChange={(itemsPerPage) => {
+          const params = new URLSearchParams(searchParams)
+          params.set('limit', itemsPerPage.toString())
+          params.set('page', '1')
+          router.push(`/admin/projects?${params.toString()}`)
+        }}
+        itemLabel="project"
+        itemLabelPlural="projects"
+      />
+
+      {/* Create Project Modal */}
+      <ProjectForm
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSuccess={handleSuccess}
+        contacts={contacts}
+        users={users}
+      />
+
+      {/* Edit Project Modal */}
+      <ProjectForm
+        isOpen={isEditModalOpen}
+        onClose={handleCloseEdit}
+        onSuccess={handleSuccess}
+        contacts={contacts}
+        users={users}
+        project={editingProject || undefined}
+      />
     </div>
   )
 }

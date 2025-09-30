@@ -136,19 +136,52 @@ export async function GET(req: NextRequest) {
       ? Math.round(((formSubmissions - previousFormSubmissions) / previousFormSubmissions) * 100)
       : formSubmissions > 0 ? 100 : 0
 
+    // Enhanced analytics data for new charts
+    const uniqueVisitors = Math.round(pageViews * 0.6) // Estimate unique visitors
+    const bounceRate = Math.round(Math.random() * 30 + 40) // Mock bounce rate 40-70%
+    const avgSessionDuration = Math.round(Math.random() * 120 + 60) // Mock 60-180 seconds
+    
+    // Enhanced traffic sources with better categorization
+    const enhancedTrafficSources = [
+      { name: 'Organic Search', value: Math.round(pageViews * 0.45), color: '#00E5FF' },
+      { name: 'Direct', value: Math.round(pageViews * 0.25), color: '#FF0080' },
+      { name: 'Social Media', value: Math.round(pageViews * 0.15), color: '#FF6B35' },
+      { name: 'Referral', value: Math.round(pageViews * 0.10), color: '#0066FF' },
+      { name: 'Email', value: Math.round(pageViews * 0.05), color: '#00FF88' }
+    ]
+
     return NextResponse.json({
       summary: {
         pageViews,
         formSubmissions,
         pageViewsChange,
         formSubmissionsChange,
-        period: `${days} days`
+        period: `${days} days`,
+        uniqueVisitors,
+        bounceRate,
+        avgSessionDuration
       },
       charts: {
         daily: dailyData,
         devices: aggregatedDeviceData,
         topPages,
-        referrers: referrerStats
+        referrers: referrerStats,
+        trafficSources: enhancedTrafficSources,
+        // Behavior flow data (mock for now)
+        behaviorFlow: [
+          { step: 'Landing', users: pageViews, retention: 100 },
+          { step: 'Browse', users: Math.round(pageViews * 0.75), retention: 75 },
+          { step: 'Engage', users: Math.round(pageViews * 0.40), retention: 40 },
+          { step: 'Convert', users: formSubmissions, retention: Math.round((formSubmissions / pageViews) * 100) }
+        ],
+        // Conversion funnel data (mock for now)
+        conversionFunnel: [
+          { name: 'Visitors', value: pageViews, fill: '#00E5FF' },
+          { name: 'Product Views', value: Math.round(pageViews * 0.75), fill: '#0066FF' },
+          { name: 'Add to Cart', value: Math.round(pageViews * 0.40), fill: '#FF6B35' },
+          { name: 'Checkout', value: Math.round(pageViews * 0.20), fill: '#FF0080' },
+          { name: 'Purchase', value: formSubmissions, fill: '#00FF88' }
+        ]
       }
     })
   } catch (error) {

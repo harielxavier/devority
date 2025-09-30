@@ -1,8 +1,9 @@
 import { Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
-import { WebsiteMetricsTable } from '@/components/admin/website-metrics-table'
+import { WebsiteMetricsTableEnhanced } from '@/components/admin/website-metrics-table-enhanced'
 import { WebsiteMetricsStats } from '@/components/admin/website-metrics-stats'
+import { WebsiteMetricsRealtime } from '@/components/admin/website-metrics-realtime'
 import { db } from '@/lib/db'
 
 export const dynamic = 'force-dynamic'
@@ -117,8 +118,15 @@ export default async function AdminWebsiteMetricsPage({
 
       <WebsiteMetricsStats stats={stats} />
 
-      <Suspense fallback={<div className="text-white">Loading...</div>}>
-        <WebsiteMetricsTable 
+      <Suspense fallback={<div className="text-white">Loading real-time data...</div>}>
+        <WebsiteMetricsRealtime 
+          projectId={projectId}
+          currentDays={days}
+        />
+      </Suspense>
+
+      <Suspense fallback={<div className="text-white">Loading metrics table...</div>}>
+        <WebsiteMetricsTableEnhanced 
           metrics={metrics as any}
           latestMetrics={Array.from(latestMetrics.values()) as any}
           projects={projects as any}

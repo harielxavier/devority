@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { 
   Users, 
@@ -11,7 +11,10 @@ import {
   LogOut,
   Eye,
   Edit,
-  Plus
+  Plus,
+  DollarSign,
+  FolderOpen,
+  RefreshCw
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { SignOutButton } from '@/components/auth/sign-out-button'
@@ -30,6 +33,7 @@ interface DashboardData {
     email: string
     company: string
     status: string
+    assignedTo?: string
     createdAt: string
   }>
   recentBlogPosts: Array<{
@@ -37,23 +41,76 @@ interface DashboardData {
     title: string
     status: string
     author: string
+    views?: number
     createdAt: string
   }>
   contactsByStatus: Record<string, number>
+  timestamp?: string
 }
 
 interface AdminDashboardProps {
   data: DashboardData
 }
 
-export function AdminDashboard({ data }: AdminDashboardProps) {
+export function AdminDashboard({ data: initialData }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState<'overview' | 'contacts' | 'blog'>('overview')
+  const [data, setData] = useState<DashboardData>(initialData)
+  const [loading, setLoading] = useState(false)
+  const [lastUpdate, setLastUpdate] = useState(new Date())
 
   const iconMap = {
     Users,
     FileText,
     Activity,
-    TrendingUp
+    TrendingUp,
+    DollarSign,
+    FolderOpen
+  }
+
+  // Auto-refresh dashboard data every 30 seconds
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch('/api/admin/dashboard')
+        if (response.ok) {
+          const newData = await response.json()
+          setData(newData)
+          setLastUpdate(new Date())
+        }
+      } catch (error) {
+        console.error('Failed to fetch dashboard data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    // Initial fetch after 5 seconds
+    const initialTimer = setTimeout(fetchDashboardData, 5000)
+    
+    // Then fetch every 30 seconds
+    const interval = setInterval(fetchDashboardData, 30000)
+
+    return () => {
+      clearTimeout(initialTimer)
+      clearInterval(interval)
+    }
+  }, [])
+
+  const manualRefresh = async () => {
+    try {
+      setLoading(true)
+      const response = await fetch('/api/admin/dashboard')
+      if (response.ok) {
+        const newData = await response.json()
+        setData(newData)
+        setLastUpdate(new Date())
+      }
+    } catch (error) {
+      console.error('Failed to fetch dashboard data:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const statusColors = {
@@ -85,27 +142,42 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
       
       <div className="relative z-10 p-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8 gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
+            <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
             <p className="text-white/60">Manage your website and business operations</p>
+            <p className="text-xs text-white/40 mt-1">
+              Last updated: {lastUpdate.toLocaleTimeString()}
+            </p>
           </div>
-          <div className="flex items-center gap-4">
-            <Link href="/admin/settings">
-              <Button variant="ghost" size="sm" className="text-white/80 hover:text-white">
+          <div className="flex items-center gap-2 lg:gap-4 w-full lg:w-auto">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={manualRefresh}
+              disabled={loading}
+              className="text-white/80 hover:text-white flex-1 lg:flex-none"
+            >
+              <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+              <span className="hidden sm:inline">Refresh</span>
+            </Button>
+            <Link href="/admin/settings" className="flex-1 lg:flex-none">
+              <Button variant="ghost" size="sm" className="text-white/80 hover:text-white w-full">
                 <Settings className="h-4 w-4 mr-2" />
-                Settings
+                <span className="hidden sm:inline">Settings</span>
               </Button>
             </Link>
-            <SignOutButton />
+            <div className="flex-1 lg:flex-none">
+              <SignOutButton />
+            </div>
           </div>
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex flex-wrap items-center gap-2 lg:gap-4 mb-8">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            className={`px-3 lg:px-4 py-2 rounded-lg font-medium transition-colors text-sm lg:text-base ${
               activeTab === 'overview' 
                 ? 'bg-electric-500/20 text-electric-300 border border-electric-500/30' 
                 : 'text-white/60 hover:text-white hover:bg-white/5'
@@ -114,22 +186,22 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
             Overview
           </button>
           <Link href="/admin/contacts">
-            <button className="px-4 py-2 rounded-lg font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors">
+            <button className="px-3 lg:px-4 py-2 rounded-lg font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors text-sm lg:text-base">
               Contacts
             </button>
           </Link>
           <Link href="/admin/blog">
-            <button className="px-4 py-2 rounded-lg font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors">
+            <button className="px-3 lg:px-4 py-2 rounded-lg font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors text-sm lg:text-base">
               Blog
             </button>
           </Link>
           <Link href="/admin/analytics">
-            <button className="px-4 py-2 rounded-lg font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors">
+            <button className="px-3 lg:px-4 py-2 rounded-lg font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors text-sm lg:text-base">
               Analytics
             </button>
           </Link>
           <Link href="/admin/users">
-            <button className="px-4 py-2 rounded-lg font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors">
+            <button className="px-3 lg:px-4 py-2 rounded-lg font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors text-sm lg:text-base">
               Users
             </button>
           </Link>
@@ -174,7 +246,9 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
                   <div>
                     <div className="font-medium text-white">{contact.name}</div>
                     <div className="text-sm text-white/60">{contact.email}</div>
-                    <div className="text-xs text-white/40">{contact.company}</div>
+                    <div className="text-xs text-white/40">
+                      {contact.company} {contact.assignedTo && `• ${contact.assignedTo}`}
+                    </div>
                   </div>
                   <div className="text-right">
                     <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${statusColors[contact.status as keyof typeof statusColors]}`}>
@@ -203,7 +277,9 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
                 <div key={post.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
                   <div className="flex-1">
                     <div className="font-medium text-white truncate">{post.title}</div>
-                    <div className="text-sm text-white/60">by {post.author}</div>
+                    <div className="text-sm text-white/60">
+                      by {post.author} {post.views !== undefined && `• ${post.views} views`}
+                    </div>
                   </div>
                   <div className="text-right ml-4">
                     <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${statusColors[post.status as keyof typeof statusColors]}`}>
@@ -220,21 +296,21 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
         {/* Quick Actions */}
         <div className="mt-8">
           <h3 className="text-xl font-semibold text-white mb-4">Quick Actions</h3>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/admin/blog/new">
-              <Button className="bg-electric-500 hover:bg-electric-600 text-white">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/admin/blog/new" className="w-full">
+              <Button className="bg-electric-500 hover:bg-electric-600 text-white w-full justify-center">
                 <Plus className="h-4 w-4 mr-2" />
                 New Blog Post
               </Button>
             </Link>
-            <Link href="/admin/contacts">
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+            <Link href="/admin/contacts" className="w-full">
+              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 w-full justify-center">
                 <Users className="h-4 w-4 mr-2" />
                 View Contacts
               </Button>
             </Link>
-            <Link href="/admin/settings">
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+            <Link href="/admin/settings" className="w-full">
+              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 w-full justify-center">
                 <Settings className="h-4 w-4 mr-2" />
                 Settings
               </Button>

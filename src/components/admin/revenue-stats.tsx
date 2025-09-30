@@ -1,6 +1,6 @@
 'use client'
 
-import { DollarSign, TrendingUp, Clock, AlertTriangle } from 'lucide-react'
+import { DollarSign, TrendingUp, Clock, AlertTriangle, Calendar } from 'lucide-react'
 
 interface RevenueStatsProps {
   stats: {
@@ -9,6 +9,7 @@ interface RevenueStatsProps {
     paidRevenue: number
     pendingRevenue: number
     overdueRevenue: number
+    paidThisMonth: number
     monthlyData: Array<{
       amount: number
       paidDate: string
@@ -37,6 +38,8 @@ export function RevenueStats({ stats }: RevenueStatsProps) {
 
   const maxMonthlyRevenue = Math.max(...monthlyRevenue)
 
+  const currentMonth = new Date().toLocaleString('default', { month: 'long' })
+
   const statCards = [
     {
       title: 'Total Revenue',
@@ -53,6 +56,14 @@ export function RevenueStats({ stats }: RevenueStatsProps) {
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'bg-blue-500/10',
       borderColor: 'border-blue-500/20'
+    },
+    {
+      title: `Paid This Month (${currentMonth})`,
+      value: formatCurrency(stats.paidThisMonth),
+      icon: Calendar,
+      color: 'from-purple-500 to-indigo-500',
+      bgColor: 'bg-purple-500/10',
+      borderColor: 'border-purple-500/20'
     },
     {
       title: 'Pending Revenue',
@@ -80,7 +91,7 @@ export function RevenueStats({ stats }: RevenueStatsProps) {
   return (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
         {statCards.map((stat, index) => (
           <div
             key={index}

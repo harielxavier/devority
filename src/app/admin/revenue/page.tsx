@@ -82,6 +82,17 @@ export default async function AdminRevenuePage({
         },
         _sum: { amount: true }
       }),
+      // Paid this month
+      db.revenue.aggregate({
+        where: {
+          status: 'paid',
+          paidDate: {
+            gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+            lt: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1)
+          }
+        },
+        _sum: { amount: true }
+      }),
       // Monthly revenue for current year
       db.revenue.findMany({
         where: {
@@ -96,12 +107,13 @@ export default async function AdminRevenuePage({
           paidDate: true
         }
       })
-    ]).then(([total, paid, pending, overdue, monthlyData]) => ({
+    ]).then(([total, paid, pending, overdue, paidThisMonth, monthlyData]) => ({
       totalRevenue: Number(total._sum.amount || 0),
       totalCount: total._count,
       paidRevenue: Number(paid._sum.amount || 0),
       pendingRevenue: Number(pending._sum.amount || 0),
       overdueRevenue: Number(overdue._sum.amount || 0),
+      paidThisMonth: Number(paidThisMonth._sum.amount || 0),
       monthlyData: monthlyData.map(m => ({
         amount: Number(m.amount),
         paidDate: m.paidDate ? m.paidDate.toISOString() : new Date().toISOString()

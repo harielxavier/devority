@@ -13,6 +13,8 @@ import {
   Building
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { RevenueForm } from './revenue-form'
+import { Pagination } from './pagination'
 
 interface Revenue {
   id: string
@@ -82,6 +84,8 @@ export function RevenueTable({
   const router = useRouter()
   const searchParams = useSearchParams()
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [editingRevenue, setEditingRevenue] = useState<Revenue | null>(null)
 
   const statusColors = {
     pending: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
@@ -120,6 +124,11 @@ export function RevenueTable({
     router.push(`/admin/revenue?${params.toString()}`)
   }
 
+  const handleEdit = (revenue: Revenue) => {
+    setEditingRevenue(revenue)
+    setIsEditModalOpen(true)
+  }
+
   const handleDelete = async (revenueId: string) => {
     if (!confirm('Are you sure you want to delete this revenue record?')) {
       return
@@ -139,6 +148,10 @@ export function RevenueTable({
     } catch (error) {
       alert('Failed to delete revenue record')
     }
+  }
+
+  const handleFormSuccess = () => {
+    router.refresh()
   }
 
   const formatDate = (dateString: string | Date | null | undefined) => {
@@ -306,6 +319,14 @@ export function RevenueTable({
                     <Button
                       variant="ghost"
                       size="sm"
+                      onClick={() => handleEdit(revenue)}
+                      className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={() => handleDelete(revenue.id)}
                       className="text-red-400 hover:text-red-300 hover:bg-red-500/10"
                     >
@@ -320,28 +341,49 @@ export function RevenueTable({
       </div>
 
       {/* Pagination */}
-      {pagination.totalPages > 1 && (
-        <div className="p-4 border-t border-white/10 flex items-center justify-between">
-          <div className="text-sm text-white/60">
-            Showing {((pagination.page - 1) * pagination.limit) + 1} to {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} revenue records
-          </div>
-          <div className="flex items-center gap-2">
-            {pagination.hasPrev && (
-              <Link href={`/admin/revenue?${new URLSearchParams({ ...Object.fromEntries(searchParams), page: (pagination.page - 1).toString() }).toString()}`}>
-                <Button variant="ghost" size="sm">Previous</Button>
-              </Link>
-            )}
-            <span className="px-3 py-1 bg-white/10 rounded text-sm text-white">
-              {pagination.page} of {pagination.totalPages}
-            </span>
-            {pagination.hasNext && (
-              <Link href={`/admin/revenue?${new URLSearchParams({ ...Object.fromEntries(searchParams), page: (pagination.page + 1).toString() }).toString()}`}>
-                <Button variant="ghost" size="sm">Next</Button>
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
+      <Pagination
+        currentPage={pagination.page}
+        totalPages={pagination.totalPages}
+        totalItems={pagination.total}
+        itemsPerPage={pagination.limit}
+        startItem={((pagination.page - 1) * pagination.limit) + 1}
+        endItem={Math.min(pagination.page * pagination.limit, pagination.total)}
+        onPageChange={(page) => {
+          const params = new URLSearchParams(searchParams)
+          params.set('page', page.toString())
+          router.push(`/admin/revenue?${params.toString()}`)
+        }}
+        onItemsPerPageChange={(itemsPerPage) => {
+          const params = new URLSearchParams(searchParams)
+          params.set('limit', itemsPerPage.toString())
+          params.set('page', '1')
+          router.push(`/admin/revenue?${params.toString()}`)
+        }}
+        itemLabel="revenue record"
+        itemLabelPlural="revenue records"
+      />
+
+      {/* Create Revenue Modal */}
+      <RevenueForm
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSuccess={handleFormSuccess}
+        projects={projects}
+        contacts={contacts}
+      />
+
+      {/* Edit Revenue Modal */}
+      <RevenueForm
+        isOpen={isEditModalOpen}
+        onClose={() => {
+          setIsEditModalOpen(false)
+          setEditingRevenue(null)
+        }}
+        onSuccess={handleFormSuccess}
+        projects={projects}
+        contacts={contacts}
+        revenue={editingRevenue || undefined}
+      />
     </div>
   )
 }

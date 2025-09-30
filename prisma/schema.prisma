@@ -309,6 +309,34 @@ model Competitor {
   @@map("competitors")
 }
 
+// Email Templates Management
+model EmailTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  subject     String
+  content     String   // HTML content
+  category    EmailTemplateCategory @default(GENERAL)
+  variables   String[] // array of available variables like {{name}}, {{company}}
+  isActive    Boolean  @default(true)
+  
+  // Metadata
+  description String?
+  previewText String? // email preview text
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("email_templates")
+}
+
+enum EmailTemplateCategory {
+  WELCOME
+  INVOICE
+  REPORT
+  NEWSLETTER
+  GENERAL
+}
+
 enum ContactStatus {
   NEW
   CONTACTED

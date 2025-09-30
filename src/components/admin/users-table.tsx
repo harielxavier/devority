@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Search, Plus, Edit, Trash2, ChevronLeft, ChevronRight, Shield, User, Edit3 } from 'lucide-react'
+import { Search, Plus, Edit, Trash2, Shield, User, Edit3 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Pagination } from './pagination'
 // import { UserModal } from './user-modal'
 
 interface User {
@@ -69,6 +70,13 @@ export function UsersTable({ users, pagination, currentSearch }: UsersTableProps
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams)
     params.set('page', page.toString())
+    router.push(`/admin/users?${params.toString()}`)
+  }
+
+  const handleItemsPerPageChange = (itemsPerPage: number) => {
+    const params = new URLSearchParams(searchParams)
+    params.set('limit', itemsPerPage.toString())
+    params.set('page', '1')
     router.push(`/admin/users?${params.toString()}`)
   }
 
@@ -299,36 +307,18 @@ export function UsersTable({ users, pagination, currentSearch }: UsersTableProps
       </div>
 
       {/* Pagination */}
-      {pagination.totalPages > 1 && (
-        <div className="p-4 border-t border-white/10 flex items-center justify-between">
-          <div className="text-sm text-white/60">
-            Showing {((pagination.page - 1) * pagination.limit) + 1} to {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} users
-          </div>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => handlePageChange(pagination.page - 1)}
-              disabled={!pagination.hasPrev}
-              className="h-8 w-8 p-0"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <span className="text-sm text-white px-2">
-              {pagination.page} of {pagination.totalPages}
-            </span>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => handlePageChange(pagination.page + 1)}
-              disabled={!pagination.hasNext}
-              className="h-8 w-8 p-0"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-      )}
+      <Pagination
+        currentPage={pagination.page}
+        totalPages={pagination.totalPages}
+        totalItems={pagination.total}
+        itemsPerPage={pagination.limit}
+        startItem={((pagination.page - 1) * pagination.limit) + 1}
+        endItem={Math.min(pagination.page * pagination.limit, pagination.total)}
+        onPageChange={handlePageChange}
+        onItemsPerPageChange={handleItemsPerPageChange}
+        itemLabel="user"
+        itemLabelPlural="users"
+      />
 
       {/* User Modal - Simple Implementation */}
       {isModalOpen && (
