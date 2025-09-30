@@ -140,7 +140,7 @@ export async function POST() {
     return NextResponse.json({
       status: 'success',
       message: 'Test email sent successfully!',
-      emailId: result.id,
+      emailId: (result as any).id || 'email-sent',
       to: process.env.BUSINESS_EMAIL || 'delivered@resend.dev'
     });
   } catch (error: any) {

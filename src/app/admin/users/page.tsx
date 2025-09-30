@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import { UsersTable } from '@/components/admin/users-table'
 import { UsersStats } from '@/components/admin/users-stats'
@@ -86,18 +87,20 @@ export default async function AdminUsersPage({
         </div>
 
         {/* Users Table */}
-        <UsersTable 
-          users={users}
-          pagination={{
-            page,
-            limit,
-            total,
-            totalPages,
-            hasNext: page < totalPages,
-            hasPrev: page > 1
-          }}
-          currentSearch={search}
-        />
+        <Suspense fallback={<div className="text-white">Loading...</div>}>
+          <UsersTable 
+            users={users}
+            pagination={{
+              page,
+              limit,
+              total,
+              totalPages,
+              hasNext: page < totalPages,
+              hasPrev: page > 1
+            }}
+            currentSearch={search}
+          />
+        </Suspense>
       </div>
     </div>
   )

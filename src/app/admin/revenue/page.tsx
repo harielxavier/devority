@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import { RevenueTable } from '@/components/admin/revenue-table'
@@ -160,14 +161,16 @@ export default async function AdminRevenuePage({
 
       <RevenueStats stats={stats} />
 
-      <RevenueTable 
-        revenues={revenuesData as any}
-        pagination={pagination}
-        currentStatus={status}
-        currentType={type}
-        projects={projects}
-        contacts={contacts}
-      />
+      <Suspense fallback={<div className="text-white">Loading...</div>}>
+        <RevenueTable 
+          revenues={revenuesData as any}
+          pagination={pagination}
+          currentStatus={status}
+          currentType={type}
+          projects={projects}
+          contacts={contacts}
+        />
+      </Suspense>
     </main>
   )
 }

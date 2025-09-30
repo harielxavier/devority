@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import { ContactsTable } from '@/components/admin/contacts-table'
 import { ContactsStats } from '@/components/admin/contacts-stats'
@@ -111,20 +112,22 @@ export default async function AdminContactsPage({
         </div>
 
         {/* Contacts Table */}
-        <ContactsTable
-          contacts={contacts}
-          pagination={{
-            page,
-            limit,
-            total,
-            totalPages,
-            hasNext: page < totalPages,
-            hasPrev: page > 1
-          }}
-          currentStatus={status}
-          currentSearch={search}
-          users={users}
-        />
+        <Suspense fallback={<div className="text-white">Loading...</div>}>
+          <ContactsTable
+            contacts={contacts}
+            pagination={{
+              page,
+              limit,
+              total,
+              totalPages,
+              hasNext: page < totalPages,
+              hasPrev: page > 1
+            }}
+            currentStatus={status}
+            currentSearch={search}
+            users={users}
+          />
+        </Suspense>
       </div>
     </div>
   )

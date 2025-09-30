@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import { ProjectsTable } from '@/components/admin/projects-table'
@@ -124,14 +125,16 @@ export default async function AdminProjectsPage({
         </div>
       </div>
 
-      <ProjectsTable 
-        projects={projectsData as any}
-        pagination={pagination}
-        currentStatus={status}
-        currentSearch={search}
-        contacts={contacts}
-        users={users}
-      />
+      <Suspense fallback={<div className="text-white">Loading...</div>}>
+        <ProjectsTable 
+          projects={projectsData as any}
+          pagination={pagination}
+          currentStatus={status}
+          currentSearch={search}
+          contacts={contacts}
+          users={users}
+        />
+      </Suspense>
     </main>
   )
 }

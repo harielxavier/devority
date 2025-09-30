@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins, JetBrains_Mono } from 'next/font/google';
+import { Suspense } from 'react';
 import '@/styles/globals.css';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { Header } from '@/components/layout/header';
@@ -209,7 +210,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="relative min-h-screen bg-gradient-dark noise-overlay">
-            <Header />
+            <Suspense fallback={<div className="h-16 lg:h-20" />}>
+              <Header />
+            </Suspense>
             <main className="relative z-10">{children}</main>
             <Footer />
             <LiveChatWidget delay={30000} />
